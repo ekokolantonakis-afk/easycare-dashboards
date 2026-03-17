@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EASYCARE Dashboard — MK</title>
+<style>
+:root {
+  --dark: #1B2A4A; --blue: #1F4E79; --blue2: #2E75B6; --accent: #D6E4F0;
+  --green: #006100; --green-bg: #C6EFCE; --yellow-bg: #FFEB9C; --orange-bg: #FCD5B4;
+  --red: #9C0006; --red-bg: #FFC7CE; --grey-bg: #F5F5F5; --purple-bg: #E4CCFF;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #333; }
+.header { background: linear-gradient(135deg, var(--dark), var(--blue)); color: white; padding: 20px 30px; }
+.header h1 { font-size: 1.6em; margin-bottom: 4px; }
+.header .sub { opacity: 0.8; font-size: 0.9em; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+/* KPI Cards */
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 20px 0; }
+.kpi { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.kpi .label { font-size: 0.75em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+.kpi .value { font-size: 2em; font-weight: 700; margin-top: 4px; }
+.kpi .value.blue { color: var(--blue); }
+.kpi .value.green { color: var(--green); }
+.kpi .value.red { color: var(--red); }
+
+/* Section */
+.section { background: white; border-radius: 12px; padding: 24px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.section h2 { font-size: 1.2em; color: var(--dark); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+.section h2 .badge { font-size: 0.7em; background: var(--blue); color: white; padding: 2px 10px; border-radius: 12px; margin-left: 8px; vertical-align: middle; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+th { background: var(--blue); color: white; padding: 10px 8px; text-align: center; font-weight: 600; position: sticky; top: 0; z-index: 1; }
+th.left { text-align: left; }
+td { padding: 8px; border-bottom: 1px solid #e8e8e8; text-align: center; }
+td.left { text-align: left; }
+td.right { text-align: right; }
+tr:hover { background: #f8f9ff; }
+tr.bold td { font-weight: 600; }
+
+/* Status pills */
+.pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+.pill.high { background: var(--green-bg); color: var(--green); }
+.pill.med { background: var(--yellow-bg); color: #856404; }
+.pill.low { background: var(--orange-bg); color: #984c0c; }
+.pill.vlow { background: var(--red-bg); color: var(--red); }
+.pill.reg { background: var(--green-bg); color: var(--green); }
+.pill.mreg { background: var(--yellow-bg); color: #856404; }
+.pill.sparse { background: var(--orange-bg); color: #984c0c; }
+.pill.inactive { background: var(--red-bg); color: var(--red); }
+.pill.na { background: var(--grey-bg); color: #666; }
+.pill.danger { background: var(--red-bg); color: var(--red); font-weight: 700; }
+.pill.warn { background: var(--orange-bg); color: #984c0c; }
+.pill.caution { background: var(--yellow-bg); color: #856404; }
+.pill.ok { background: var(--green-bg); color: var(--green); }
+
+/* Priority pills */
+.prio-ΑΜΕΣΟ { background: var(--red-bg); color: var(--red); font-weight: 700; }
+.prio-ΑΝΑΠΤΥΞΗ { background: var(--yellow-bg); color: #856404; }
+.prio-ΒΕΛΤΙΩΣΗ { background: #BDD7EE; color: var(--blue); }
+
+/* Trend */
+.trend-down { color: var(--red); font-weight: 700; }
+.trend-slight-down { color: #984c0c; }
+.trend-up { color: var(--green); font-weight: 700; }
+.trend-stable { color: #666; }
+
+/* Heatmap */
+.dot { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 50%; text-align: center; font-size: 14px; }
+.dot.active { background: var(--green-bg); color: var(--green); }
+.dot.inactive { background: var(--red-bg); color: var(--red); }
+
+/* Matrix */
+.mx { width: 24px; height: 24px; display: inline-block; text-align: center; font-size: 14px; border-radius: 4px; }
+.mx.yes { background: var(--green-bg); color: var(--green); }
+.mx.no { background: var(--red-bg); color: var(--red); }
+
+/* Search + Filter */
+.toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.search { padding: 8px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9em; min-width: 250px; }
+.filter-btn { padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; background: white; cursor: pointer; font-size: 0.8em; }
+.filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+/* Tabs */
+.tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 2px solid var(--accent); flex-wrap: wrap; }
+.tab { padding: 12px 20px; cursor: pointer; font-weight: 600; color: #666; border-bottom: 3px solid transparent; transition: all 0.2s; font-size: 0.9em; }
+.tab:hover { color: var(--blue); }
+.tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Scrollable table wrapper */
+.table-wrap { overflow-x: auto; max-height: 70vh; overflow-y: auto; }
+
+/* Two column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Footer */
+.footer { text-align: center; padding: 20px; color: #999; font-size: 0.8em; }
+
+/* Print */
+@media print { .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EASYCARE IKE — Commercial Dashboard</h1>
+  <div class="sub">Πωλητής: <strong>MK</strong> | Περίοδος: 01/01/2025 - 15/03/2026 (15 months) | Ανάλυση: 17/03/2026 | 15 μήνες δεδομένων</div>
+</div>
+
+<div class="container">
+
+<!-- KPIs -->
+<div class="kpi-row">
+  <div class="kpi"><div class="label">Πωλήσεις</div><div class="value blue">€454,577</div></div>
+  <div class="kpi"><div class="label">Πελάτες</div><div class="value blue">10</div></div>
+  <div class="kpi"><div class="label">Τακτικοί</div><div class="value green">0</div></div>
+  <div class="kpi"><div class="label">Σε Κίνδυνο</div><div class="value red">1</div></div>
+  <div class="kpi"><div class="label">Μ.Ο. Coverage</div><div class="value blue">26%</div></div>
+  <div class="kpi"><div class="label">Δυνητικό €</div><div class="value green">€54,938</div></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('customers')">Πελάτες</div>
+  <div class="tab" onclick="showTab('danger')">Κίνδυνος</div>
+  <div class="tab" onclick="showTab('actions')">Action Plan</div>
+  <div class="tab" onclick="showTab('missing')">Missing Articles</div>
+  <div class="tab" onclick="showTab('trends')">Trends & Alerts</div>
+  <div class="tab" onclick="showTab('heatmap')">Monthly Heatmap</div>
+  <div class="tab" onclick="showTab('matrix')">Matrix</div>
+</div>
+
+<div id="tab-customers" class="tab-content active"><div class="section">
+<h2>Ανάλυση Πελατών <span class="badge">10 πελάτες</span></h2>
+<div class="toolbar"><input class="search" type="text" placeholder="Αναζήτηση πελάτη..." onkeyup="filterTable(this, 'cust-table')"></div>
+<div class="table-wrap"><table id="cust-table">
+<thead><tr><th>#</th><th class="left">Επωνυμία</th><th>ΑΦΜ</th><th>Πωλήσεις €</th><th>Προϊόντα</th><th>Key ✓</th><th>Key ✗</th><th>Coverage</th><th>Τιμολ.</th><th>M.O. Gap</th><th>Τελ. Παραγγ.</th><th>Ημ. Σιωπής</th><th>Score</th><th>Τακτικότητα</th></tr></thead><tbody>
+<tr class="bold">
+<td>1</td>
+<td class="left">MMM 77</td>
+<td>205807398</td>
+<td class="right">€231,905</td>
+<td>39</td>
+<td style="color:var(--green)">16</td>
+<td style="color:var(--red)">36</td>
+<td><span class="pill low">31%</span></td>
+<td>17</td>
+<td>27</td>
+<td>2026-03-06</td>
+<td><span class="pill ok">11</span></td>
+<td>59</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+</tr>
+<tr class="bold">
+<td>2</td>
+<td class="left">Kefaia Trade International e.K.</td>
+<td></td>
+<td class="right">€85,308</td>
+<td>11</td>
+<td style="color:var(--green)">9</td>
+<td style="color:var(--red)">43</td>
+<td><span class="pill vlow">17%</span></td>
+<td>14</td>
+<td>29</td>
+<td>2026-01-22</td>
+<td><span class="pill warn">54</span></td>
+<td>49</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td class="left">EASYCARE NET COMPANY Ε Ε</td>
+<td>801675494</td>
+<td class="right">€47,937</td>
+<td>200</td>
+<td style="color:var(--green)">49</td>
+<td style="color:var(--red)">3</td>
+<td><span class="pill high">94%</span></td>
+<td>56</td>
+<td>7</td>
+<td>2026-03-16</td>
+<td><span class="pill ok">1</span></td>
+<td>56</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td class="left">DETAS LOJISTIK GIDA PETROL SANAYI VE TICARET LIMITED SIRKETI</td>
+<td>2930474626</td>
+<td class="right">€43,636</td>
+<td>6</td>
+<td style="color:var(--green)">5</td>
+<td style="color:var(--red)">47</td>
+<td><span class="pill vlow">10%</span></td>
+<td>2</td>
+<td>14</td>
+<td>2026-02-05</td>
+<td><span class="pill warn">40</span></td>
+<td>37</td>
+<td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td class="left">HOSPACKFARMA BV</td>
+<td></td>
+<td class="right">€20,629</td>
+<td>3</td>
+<td style="color:var(--green)">2</td>
+<td style="color:var(--red)">50</td>
+<td><span class="pill vlow">4%</span></td>
+<td>4</td>
+<td>175</td>
+<td>2026-03-16</td>
+<td><span class="pill ok">1</span></td>
+<td>65</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td class="left">Tim Trade Ltd</td>
+<td></td>
+<td class="right">€7,429</td>
+<td>3</td>
+<td style="color:var(--green)">1</td>
+<td style="color:var(--red)">51</td>
+<td><span class="pill vlow">2%</span></td>
+<td>1</td>
+<td>0</td>
+<td>2026-03-11</td>
+<td><span class="pill ok">6</span></td>
+<td>31</td>
+<td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr>
+<td>7</td>
+<td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td></td>
+<td class="right">€6,567</td>
+<td>3</td>
+<td style="color:var(--green)">3</td>
+<td style="color:var(--red)">49</td>
+<td><span class="pill vlow">6%</span></td>
+<td>2</td>
+<td>287</td>
+<td>2026-01-20</td>
+<td><span class="pill warn">56</span></td>
+<td>32</td>
+<td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr>
+<td>8</td>
+<td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td>047463440</td>
+<td class="right">€5,565</td>
+<td>8</td>
+<td style="color:var(--green)">7</td>
+<td style="color:var(--red)">45</td>
+<td><span class="pill vlow">14%</span></td>
+<td>8</td>
+<td>36</td>
+<td>2026-03-11</td>
+<td><span class="pill ok">6</span></td>
+<td>64</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+</tr>
+<tr>
+<td>9</td>
+<td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟΣ</td>
+<td>046929897</td>
+<td class="right">€3,348</td>
+<td>16</td>
+<td style="color:var(--green)">13</td>
+<td style="color:var(--red)">39</td>
+<td><span class="pill low">25%</span></td>
+<td>10</td>
+<td>16</td>
+<td>2026-03-11</td>
+<td><span class="pill ok">6</span></td>
+<td>56</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+</tr>
+<tr>
+<td>10</td>
+<td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜΟΥ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td>092633016</td>
+<td class="right">€2,253</td>
+<td>43</td>
+<td style="color:var(--green)">30</td>
+<td style="color:var(--red)">22</td>
+<td><span class="pill med">58%</span></td>
+<td>1</td>
+<td>0</td>
+<td>2026-02-19</td>
+<td><span class="pill caution">26</span></td>
+<td>24</td>
+<td><span class="pill sparse">Αραιός</span></td>
+</tr>
+</tbody></table></div></div></div>
+<div id="tab-danger" class="tab-content"><div class="two-col">
+<div class="section"><h2 style="color:var(--red)">🚨 Danger Zone <span class="badge" style="background:var(--red)">1</span></h2>
+<table><thead><tr><th class="left">Πελάτης</th><th>Πωλήσεις</th><th>Ημ. Σιωπής</th><th>Avg Gap</th><th>Status</th></tr></thead><tbody>
+<tr><td class="left" style="font-weight:600">Kefaia Trade International e.K.</td>
+<td class="right" style="color:var(--red)">€85,308</td>
+<td><span class="pill danger">54</span></td>
+<td>29</td>
+<td><span class="pill mreg">Μέτρια Τακτικότητα</span></td></tr>
+</tbody></table>
+</div>
+<div class="section"><h2 style="color:var(--green)">🎯 Low Hanging Fruit <span class="badge" style="background:var(--green)">0</span></h2>
+<p style="color:#666;text-align:center;padding:40px">Κανένας τακτικός με χαμηλή κάλυψη</p>
+</div></div></div>
+<div id="tab-actions" class="tab-content"><div class="section">
+<h2>Action Plan <span class="badge">6 ενέργειες</span></h2>
+<div class="table-wrap"><table><thead><tr><th>Priority</th><th class="left">Πελάτης</th><th>Πωλήσεις</th><th class="left">Πρόβλημα</th><th class="left">Ενέργεια</th><th>Δυνητικό €</th></tr></thead><tbody>
+<tr><td><span class="pill prio-ΒΕΛΤΙΩΣΗ">ΒΕΛΤΙΩΣΗ</span></td>
+<td class="left" style="font-weight:600">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Μέτρια τακτικότητα</td>
+<td class="left" style="font-weight:600">Πρόγραμμα loyalty — στόχος μηνιαία παραγγελία</td>
+<td class="right" style="color:var(--green);font-weight:600">€34,786</td></tr>
+<tr><td><span class="pill prio-ΑΜΕΣΟ">ΑΜΕΣΟ</span></td>
+<td class="left" style="font-weight:600">Kefaia Trade International e.K.</td>
+<td class="right">€85,308</td>
+<td class="left">Σιωπηλός τακτικός πελάτης</td>
+<td class="left" style="font-weight:600">Call ΤΩΡΑ — 54ημ χωρίς παραγγελία</td>
+<td class="right" style="color:var(--green);font-weight:600">€8,531</td></tr>
+<tr><td><span class="pill prio-ΒΕΛΤΙΩΣΗ">ΒΕΛΤΙΩΣΗ</span></td>
+<td class="left" style="font-weight:600">EASYCARE NET COMPANY Ε Ε</td>
+<td class="right">€47,937</td>
+<td class="left">Μέτρια τακτικότητα</td>
+<td class="left" style="font-weight:600">Πρόγραμμα loyalty — στόχος μηνιαία παραγγελία</td>
+<td class="right" style="color:var(--green);font-weight:600">€7,190</td></tr>
+<tr><td><span class="pill prio-ΒΕΛΤΙΩΣΗ">ΒΕΛΤΙΩΣΗ</span></td>
+<td class="left" style="font-weight:600">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Μέτρια τακτικότητα</td>
+<td class="left" style="font-weight:600">Πρόγραμμα loyalty — στόχος μηνιαία παραγγελία</td>
+<td class="right" style="color:var(--green);font-weight:600">€3,094</td></tr>
+<tr><td><span class="pill prio-ΒΕΛΤΙΩΣΗ">ΒΕΛΤΙΩΣΗ</span></td>
+<td class="left" style="font-weight:600">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Μέτρια τακτικότητα</td>
+<td class="left" style="font-weight:600">Πρόγραμμα loyalty — στόχος μηνιαία παραγγελία</td>
+<td class="right" style="color:var(--green);font-weight:600">€835</td></tr>
+<tr><td><span class="pill prio-ΒΕΛΤΙΩΣΗ">ΒΕΛΤΙΩΣΗ</span></td>
+<td class="left" style="font-weight:600">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟΣ</td>
+<td class="right">€3,348</td>
+<td class="left">Μέτρια τακτικότητα</td>
+<td class="left" style="font-weight:600">Πρόγραμμα loyalty — στόχος μηνιαία παραγγελία</td>
+<td class="right" style="color:var(--green);font-weight:600">€502</td></tr>
+</tbody><tfoot><tr style="background:var(--dark);color:white;font-weight:700"><td colspan="5" style="text-align:right;padding:10px">ΣΥΝΟΛΟ ΔΥΝΗΤΙΚΟ</td><td style="text-align:right;padding:10px">€54,938</td></tr></tfoot></table></div></div></div>
+<div id="tab-missing" class="tab-content"><div class="section">
+<h2>Missing Key Articles <span class="badge">90 gaps</span></h2>
+<div class="toolbar"><input class="search" type="text" placeholder="Αναζήτηση..." onkeyup="filterTable(this, 'miss-table')"></div>
+<div class="table-wrap"><table id="miss-table"><thead><tr><th class="left">Πελάτης</th><th>Πωλ. Πελ.</th><th class="left">Missing Article</th><th>Κωδικός</th><th>Market Value</th><th>Αγοραστές</th></tr></thead><tbody>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ</td>
+<td>20508140</td>
+<td class="right">€36,015</td>
+<td>50</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td>930442161</td>
+<td class="right">€32,340</td>
+<td>65</td></tr>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 πακέτα</td>
+<td>17005133</td>
+<td class="right">€31,199</td>
+<td>79</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td>16309075</td>
+<td class="right">€43,067</td>
+<td>88</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 πακέτα</td>
+<td>17005133</td>
+<td class="right">€31,199</td>
+<td>79</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">EASY ADULT PANTS MEDIUM 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td>13022030</td>
+<td class="right">€20,403</td>
+<td>53</td></tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td class="left">EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td>13032030</td>
+<td class="right">€18,229</td>
+<td>55</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td>16309075</td>
+<td class="right">€43,067</td>
+<td>88</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ</td>
+<td>20508140</td>
+<td class="right">€36,015</td>
+<td>50</td></tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td>930442161</td>
+<td class="right">€32,340</td>
+<td>65</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td>16309075</td>
+<td class="right">€43,067</td>
+<td>88</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td>16309075</td>
+<td class="right">€43,067</td>
+<td>88</td></tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ</td>
+<td>20508140</td>
+<td class="right">€36,015</td>
+<td>50</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td class="left">Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263127200</td>
+<td class="right">€32,681</td>
+<td>48</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">Easyslip ανοιχτή πάνα Medium ΝΥΧΤΑΣ (4x20)</td>
+<td>2105021</td>
+<td class="right">€16,998</td>
+<td>35</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">Kera bed Υποσέντονα  12 πακέτα Χ 10 τεμάχια (60x90</td>
+<td>15033033</td>
+<td class="right">€15,778</td>
+<td>59</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">EASYPANTS ΝΥΧΤΑΣ LARGE 4ΠΑΚ Χ 18ΤΜΧ</td>
+<td>13034000N</td>
+<td class="right">€14,620</td>
+<td>45</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">LILLE SUPREM ADULT PANTS L MAXI 14 TMX X 8 ΠΑΚ</td>
+<td>LSPU0321</td>
+<td class="right">€13,394</td>
+<td>16</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">SEPTONA BW CNC CHAMOMILE 80 (*18)</td>
+<td>2101010080001</td>
+<td class="right">€11,694</td>
+<td>44</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">LILLE SUPREM ADULT PANTS XL MAXI-(8x14)</td>
+<td>LSPU0421</td>
+<td class="right">€10,390</td>
+<td>15</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">KERA SOFT XL 40TEM x24ΠΑΚ</td>
+<td>9188888</td>
+<td class="right">€9,042</td>
+<td>69</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">EASYPANTS ΝΥΧΤΑΣ MEDIUM 4ΠΑΚ Χ 20ΤΜΧ</td>
+<td>13024000N</td>
+<td class="right">€8,535</td>
+<td>38</td></tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td class="left">LILLE ακράτειας Supr. Light Super 30 ΤΜΧ Χ 8 ΠΑΚ</td>
+<td>LSP20061930</td>
+<td class="right">€7,475</td>
+<td>30</td></tr>
+</tbody></table></div></div></div>
+<div id="tab-trends" class="tab-content"><div class="two-col">
+<div class="section"><h2 style="color:var(--red)">📉 Alerts — Πτώση/Σταμάτημα <span class="badge" style="background:var(--red)">28</span></h2>
+<div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>Σύνολο €</th></tr></thead><tbody>
+<tr><td class="left">Kefaia Trade Internationa</td><td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td>
+<td class="right">€29,266</td></tr>
+<tr><td class="left">MMM 77</td><td class="left">Kera Slip Premium NIGHT MAXI  LARGE</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€13,218</td></tr>
+<tr><td class="left">MMM 77</td><td class="left">Adult INCONTINENCE DIAPERS - LARGE</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td>
+<td class="right">€4,734</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td>
+<td class="right">€3,348</td></tr>
+<tr><td class="left">MMM 77</td><td class="left">Adult INCONTINENCE PANTS MEDIUM</td>
+<td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td>
+<td class="right">€2,293</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Suprem MEN super 21 TMX X 7 ΠΑΚ</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€615</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€232</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Tena pants Normal XLARGE 15x6ΠΑΚ</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€172</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">EASYPANTS ΝΥΧΤΑΣ SMALL 22 TMX X 4 Π</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€129</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Tena pants Normal Large 18X4πακ</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€125</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€121</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">SERENITY CARE WET WIPES 8bags Χ 63p</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€107</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">BEBINO παιδική πάνα MAXI No 4  7-18</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€100</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">ΧΑΡΤΙ ΚΟΥΖΙΝΑΣ (K.R) SCALA BOBINOTT</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€98</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Moltex pure &amp; nature wipes 60 pcs x</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€91</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">BEBINO παιδική πάνα  No 6 XL 18-30 </td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€86</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Κera disposable face mask typeII 50</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€79</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">MOLTEX PURE&amp;NAT BP ECO SUEZ 4STR XL</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€68</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Pampers Baby-Dry Pants No4 (9-13kg)</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€67</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">KERA LADY EXTRA 24 πακ X 12</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€57</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Vaseline Original Pure Petroleum Je</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€57</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">ROL MASSALIA ΥΓ.ΠΛ. 32MZ 8X1600ML</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€49</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">ROL QUICKWASH ΥΓ.ΠΛ. 35MZ 8X1600ML</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€48</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">BEBINO παιδική πάνα JUNIOR No 5 11-</td>
+<td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td>
+<td class="right">€44</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">ROL BLACK ΥΓ.ΠΛ. 30MZ 8X1440ML</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€42</td></tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑ</td><td class="left">SERENITY slip LARGE 3 Χ 30pcs-extra</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€42</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">SUDOCREM CREAM 60GR</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€39</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">ESSEX ΥΓΡΟ TOUCH 45MEZ 4X2.25LT</td>
+<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td>
+<td class="right">€30</td></tr>
+</tbody></table></div></div>
+<div class="section"><h2 style="color:var(--green)">📈 Growth — Άνοδος <span class="badge" style="background:var(--green)">17</span></h2>
+<div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>Σύνολο €</th></tr></thead><tbody>
+<tr><td class="left">MMM 77</td><td class="left">GENERIC P/L Slip Premium NIGHT MAXI</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td>
+<td class="right">€106,753</td></tr>
+<tr><td class="left">MMM 77</td><td class="left">Kera Slip Premium NIGHT MAXI  XLARG</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€21,681</td></tr>
+<tr><td class="left">MMM 77</td><td class="left">GENERIC P/L Slip Premium NIGHT MAXI</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€16,682</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td><td class="left">LILLE SUPREM ADULT PANTS XL MAXI-(8</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€11,931</td></tr>
+<tr><td class="left">HOSPACKFARMA BV</td><td class="left">LILLE SUPREM ADULT PANTS L MAXI 14 </td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€11,377</td></tr>
+<tr><td class="left">Kefaia Trade Internationa</td><td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€3,724</td></tr>
+<tr><td class="left">Kefaia Trade Internationa</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€3,458</td></tr>
+<tr><td class="left">Kefaia Trade Internationa</td><td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€3,137</td></tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td><td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€1,993</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€1,566</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 2</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€1,561</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Kera bed Υποσέντονα  12 πακέτα Χ 10</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€642</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Suprem MEN EXTRA 14 TMX X 12 ΠΑΚ</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€540</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Easypet XL 60x90, 30pcs x 2</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€472</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">SOLG Vit D3 4000IU 42x60 CAP GB</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€324</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Kera bed Υποσέντονα  60x60  5 πακέτ</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€167</td></tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td><td class="left">Kera bed Υποσέντονα  60x90  MAXI (G</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td>
+<td class="right">€113</td></tr>
+</tbody></table></div></div>
+</div></div>
+<div id="tab-heatmap" class="tab-content"><div class="section">
+<h2>Monthly Activity Heatmap</h2>
+<div class="table-wrap"><table><thead><tr><th class="left">Πελάτης</th><th>Πωλήσεις</th>
+<th style="font-size:0.75em;padding:4px">Ι25</th>
+<th style="font-size:0.75em;padding:4px">Φ25</th>
+<th style="font-size:0.75em;padding:4px">Μ25</th>
+<th style="font-size:0.75em;padding:4px">Α25</th>
+<th style="font-size:0.75em;padding:4px">Μα25</th>
+<th style="font-size:0.75em;padding:4px">Ιν25</th>
+<th style="font-size:0.75em;padding:4px">Ιλ25</th>
+<th style="font-size:0.75em;padding:4px">Αυ25</th>
+<th style="font-size:0.75em;padding:4px">Σ25</th>
+<th style="font-size:0.75em;padding:4px">Ο25</th>
+<th style="font-size:0.75em;padding:4px">Ν25</th>
+<th style="font-size:0.75em;padding:4px">Δ25</th>
+<th style="font-size:0.75em;padding:4px">Ι26</th>
+<th style="font-size:0.75em;padding:4px">Φ26</th>
+<th style="font-size:0.75em;padding:4px">Μ26</th>
+</tr></thead><tbody>
+<tr><td class="left">MMM 77</td>
+<td class="right">€231,905</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+</tr>
+<tr><td class="left">Kefaia Trade International e.K</td>
+<td class="right">€85,308</td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+</tr>
+<tr><td class="left">EASYCARE NET COMPANY Ε Ε</td>
+<td class="right">€47,937</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+</tr>
+<tr><td class="left">DETAS LOJISTIK GIDA PETROL SAN</td>
+<td class="right">€43,636</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+</tr>
+<tr><td class="left">HOSPACKFARMA BV</td>
+<td class="right">€20,629</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+</tr>
+<tr><td class="left">Tim Trade Ltd</td>
+<td class="right">€7,429</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+</tr>
+<tr><td class="left">OMNICARE DISTRIBUTION SRL</td>
+<td class="right">€6,567</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+</tr>
+<tr><td class="left">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td class="right">€5,565</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+</tr>
+<tr><td class="left">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙΝΟ</td>
+<td class="right">€3,348</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+</tr>
+<tr><td class="left">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣΙΜ</td>
+<td class="right">€2,253</td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+</tr>
+</tbody></table></div></div></div>
+<div id="tab-matrix" class="tab-content"><div class="section">
+<h2>Matrix Πελατών × Key Articles</h2>
+<div class="table-wrap"><table><thead><tr><th class="left" style="min-width:200px">Πελάτης</th><th>Cov%</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera slip Large 4 πακ χ 20 τμχ">21156462</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera slip X-Large 4 πακ χ 20 τμχ">21156562</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)">14033033</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X 20">26314720</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X 20">26313720</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera slip medium 4 πακ χ 20 τμχ">21156362</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Pants Plus L 8πακ Χ 14τμχ">93034216</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)">18033033</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τμχ">2105030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Pants Plus M 8πακ Χ 14τμχ">93024216</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)">16309075</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20">94534265</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ">20508140</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ) 4 X 20">26312720</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Pants Plus XL 4πακ Χ 14τμχ">93044216</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 πακέτα">17005133</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASY ADULT PANTS MEDIUM 30 TΜΧ Χ 4 ΠΑΚ">13022030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ">13032030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Easyslip ανοιχτή πάνα Medium ΝΥΧΤΑΣ (4x20)">2105021</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA Ad.SLIP Maxi Night MEDIUM (ΜΩΒ) 20 ΤΜΧ x 4 ΠΑΚ">94523265</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera bed Υποσέντονα  12 πακέτα Χ 10 τεμάχια (60x90)">15033033</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Suprem MEN super 21 TMX X 7 ΠΑΚ">LSFE3181</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASYPANTS ΝΥΧΤΑΣ LARGE 4ΠΑΚ Χ 18ΤΜΧ">13034000</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE SUPREM ADULT PANTS L MAXI 14 TMX X 8 ΠΑΚ">LSPU0321</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SEPTONA BW CNC CHAMOMILE 80 (*18)">21010100</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASY ADULT PANTS X-LARGE 30 TΜΧ Χ 4 ΠΑΚ">13042030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE SUPREM ADULT PANTS XL MAXI-(8x14)">LSPU0421</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA SOFT XL 40TEM x24ΠΑΚ">9188888</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASYPANTS ΝΥΧΤΑΣ MEDIUM 4ΠΑΚ Χ 20ΤΜΧ">13024000</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Easypet XL 60x90, 30pcs x 2">16292122</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE ακράτειας Supr. Light Super 30 ΤΜΧ Χ 8 ΠΑΚ">LSP20061</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="ID SLIP Super LARGE 15 TMX x 6 ΠΑΚ">56303751</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="BEBINO παιδική πάνα JUNIOR No 5 11-25kg  5πακΧ26τμχ">887126</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="iD Expert Light BTBS Extra  28τμχ χ 10 πακ">51600402</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA LADY SUPER 30 πακ x 10">20506140</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASYPET M 60x60cm 30τεμ x 4ΠΑΚ/ΔΕΜΑ">16268000</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera bed Υποσέντονα  60x90  MAXI (Green) 5 πακέτα Χ 10 τεμάχια">16292130</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="BEBINO παιδική πάνα  No 6 XL 18-30 kg 5πακΧ24τμχ">887124</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="BEBINO παιδική πάνα MAXI No 4  7-18kg  5πακΧ38τμχ">887438</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 πακ">08052675</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE SUPREM ΣΕΡΒΙΕΤΑ ΑΚΡΑΤΕΙΑΣ ΜΑΧΙ 30 TMX X 6 ΠΑΚΕΤΑ">LSP23062</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA LADY EXTRA 24 πακ X 12">20504140</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SERENITY CARE WET WIPES 8bags Χ 63pcs">35102005</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 πακ">08052675</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SENSOCREAM 400 GR X 12">10067</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SERENITY LIGHT MAXI 4bags Χ 30pcs">37707300</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA BED ΥΠΟΣΕΝΤΟΝΟ SUPER 60x90 25TMX (X4)">16253090</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY ALOE &amp; CAMOMILLA BABY WIPES 72 TMX - 24 πακ">08052675</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="ID ESSENTIAL LIGHT SUPER N6 28 X 6 ΠΑΚ">IDE20061</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SENSOCREAM 150 GR X 12">10164</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SERENITY LIGHT SUPER 8bags Χ 30pcs">37706300</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPES 72 TMX - 24 πακ">08052675</th>
+</tr></thead><tbody>
+<tr><td class="left" style="font-size:0.8em">MMM 77</td>
+<td><span class="pill low">31%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">Kefaia Trade International e</td>
+<td><span class="pill vlow">17%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">EASYCARE NET COMPANY Ε Ε</td>
+<td><span class="pill high">94%</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">DETAS LOJISTIK GIDA PETROL S</td>
+<td><span class="pill vlow">10%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">HOSPACKFARMA BV</td>
+<td><span class="pill vlow">4%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">Tim Trade Ltd</td>
+<td><span class="pill vlow">2%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">OMNICARE DISTRIBUTION SRL</td>
+<td><span class="pill vlow">6%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">ΠΑΠΠΑ  ΕΥΑΓΓΕΛΙΑ ΣΤΑΥΡΟΣ</td>
+<td><span class="pill vlow">14%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">ΜΠΟΥΚΟΥΒΑΛΑ  ΜΑΡΙΑ ΚΩΝΣΤΑΝΤΙ</td>
+<td><span class="pill low">25%</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">ΦΑΡΜΑΚΕΙΑ ΤΡΙΑΝΤΑΦΥΛΛΑ ΓΕΡΑΣ</td>
+<td><span class="pill med">58%</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+</tbody></table></div></div></div>
+
+</div>
+
+<div class="footer">
+  EASYCARE IKE — Commercial Intelligence Dashboard | Generated 17/03/2026 13:37 | Powered by Python & Data
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function filterTable(input, tableId) {
+  const filter = input.value.toUpperCase();
+  const rows = document.getElementById(tableId).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+  for (let row of rows) {
+    const txt = row.textContent.toUpperCase();
+    row.style.display = txt.includes(filter) ? '' : 'none';
+  }
+}
+
+// Make table headers sortable
+document.querySelectorAll('table').forEach(table => {
+  const headers = table.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.style.cursor = 'pointer';
+    th.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      if (!tbody) return;
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const dir = th.dataset.dir === 'asc' ? 'desc' : 'asc';
+      th.dataset.dir = dir;
+      rows.sort((a, b) => {
+        let av = a.cells[idx]?.textContent.trim() || '';
+        let bv = b.cells[idx]?.textContent.trim() || '';
+        // Try numeric
+        let an = parseFloat(av.replace(/[€,%]/g,'').replace(/,/g,''));
+        let bn = parseFloat(bv.replace(/[€,%]/g,'').replace(/,/g,''));
+        if (!isNaN(an) && !isNaN(bn)) {
+          return dir === 'asc' ? an - bn : bn - an;
+        }
+        return dir === 'asc' ? av.localeCompare(bv, 'el') : bv.localeCompare(av, 'el');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+});
+</script>
+</body></html>

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EASYCARE Dashboard — ΧΩΡΙΣ ΠΩΛΗΤΗ</title>
+<style>
+:root {
+  --dark: #1B2A4A; --blue: #1F4E79; --blue2: #2E75B6; --accent: #D6E4F0;
+  --green: #006100; --green-bg: #C6EFCE; --yellow-bg: #FFEB9C; --orange-bg: #FCD5B4;
+  --red: #9C0006; --red-bg: #FFC7CE; --grey-bg: #F5F5F5; --purple-bg: #E4CCFF;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #333; }
+.header { background: linear-gradient(135deg, var(--dark), var(--blue)); color: white; padding: 20px 30px; }
+.header h1 { font-size: 1.6em; margin-bottom: 4px; }
+.header .sub { opacity: 0.8; font-size: 0.9em; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+/* KPI Cards */
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 20px 0; }
+.kpi { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.kpi .label { font-size: 0.75em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+.kpi .value { font-size: 2em; font-weight: 700; margin-top: 4px; }
+.kpi .value.blue { color: var(--blue); }
+.kpi .value.green { color: var(--green); }
+.kpi .value.red { color: var(--red); }
+
+/* Section */
+.section { background: white; border-radius: 12px; padding: 24px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.section h2 { font-size: 1.2em; color: var(--dark); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+.section h2 .badge { font-size: 0.7em; background: var(--blue); color: white; padding: 2px 10px; border-radius: 12px; margin-left: 8px; vertical-align: middle; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+th { background: var(--blue); color: white; padding: 10px 8px; text-align: center; font-weight: 600; position: sticky; top: 0; z-index: 1; }
+th.left { text-align: left; }
+td { padding: 8px; border-bottom: 1px solid #e8e8e8; text-align: center; }
+td.left { text-align: left; }
+td.right { text-align: right; }
+tr:hover { background: #f8f9ff; }
+tr.bold td { font-weight: 600; }
+
+/* Status pills */
+.pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+.pill.high { background: var(--green-bg); color: var(--green); }
+.pill.med { background: var(--yellow-bg); color: #856404; }
+.pill.low { background: var(--orange-bg); color: #984c0c; }
+.pill.vlow { background: var(--red-bg); color: var(--red); }
+.pill.reg { background: var(--green-bg); color: var(--green); }
+.pill.mreg { background: var(--yellow-bg); color: #856404; }
+.pill.sparse { background: var(--orange-bg); color: #984c0c; }
+.pill.inactive { background: var(--red-bg); color: var(--red); }
+.pill.na { background: var(--grey-bg); color: #666; }
+.pill.danger { background: var(--red-bg); color: var(--red); font-weight: 700; }
+.pill.warn { background: var(--orange-bg); color: #984c0c; }
+.pill.caution { background: var(--yellow-bg); color: #856404; }
+.pill.ok { background: var(--green-bg); color: var(--green); }
+
+/* Priority pills */
+.prio-ΑΜΕΣΟ { background: var(--red-bg); color: var(--red); font-weight: 700; }
+.prio-ΑΝΑΠΤΥΞΗ { background: var(--yellow-bg); color: #856404; }
+.prio-ΒΕΛΤΙΩΣΗ { background: #BDD7EE; color: var(--blue); }
+
+/* Trend */
+.trend-down { color: var(--red); font-weight: 700; }
+.trend-slight-down { color: #984c0c; }
+.trend-up { color: var(--green); font-weight: 700; }
+.trend-stable { color: #666; }
+
+/* Heatmap */
+.dot { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 50%; text-align: center; font-size: 14px; }
+.dot.active { background: var(--green-bg); color: var(--green); }
+.dot.inactive { background: var(--red-bg); color: var(--red); }
+
+/* Matrix */
+.mx { width: 24px; height: 24px; display: inline-block; text-align: center; font-size: 14px; border-radius: 4px; }
+.mx.yes { background: var(--green-bg); color: var(--green); }
+.mx.no { background: var(--red-bg); color: var(--red); }
+
+/* Search + Filter */
+.toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.search { padding: 8px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9em; min-width: 250px; }
+.filter-btn { padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; background: white; cursor: pointer; font-size: 0.8em; }
+.filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+/* Tabs */
+.tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 2px solid var(--accent); flex-wrap: wrap; }
+.tab { padding: 12px 20px; cursor: pointer; font-weight: 600; color: #666; border-bottom: 3px solid transparent; transition: all 0.2s; font-size: 0.9em; }
+.tab:hover { color: var(--blue); }
+.tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Scrollable table wrapper */
+.table-wrap { overflow-x: auto; max-height: 70vh; overflow-y: auto; }
+
+/* Two column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Footer */
+.footer { text-align: center; padding: 20px; color: #999; font-size: 0.8em; }
+
+/* Print */
+@media print { .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EASYCARE IKE — Commercial Dashboard</h1>
+  <div class="sub">Πωλητής: <strong>ΧΩΡΙΣ ΠΩΛΗΤΗ</strong> | Περίοδος: 01/01/2025 - 15/03/2026 (15 months) | Ανάλυση: 17/03/2026 | 15 μήνες δεδομένων</div>
+</div>
+
+<div class="container">
+
+<!-- KPIs -->
+<div class="kpi-row">
+  <div class="kpi"><div class="label">Πωλήσεις</div><div class="value blue">€292,757</div></div>
+  <div class="kpi"><div class="label">Πελάτες</div><div class="value blue">4</div></div>
+  <div class="kpi"><div class="label">Τακτικοί</div><div class="value green">0</div></div>
+  <div class="kpi"><div class="label">Σε Κίνδυνο</div><div class="value red">0</div></div>
+  <div class="kpi"><div class="label">Μ.Ο. Coverage</div><div class="value blue">4%</div></div>
+  <div class="kpi"><div class="label">Δυνητικό €</div><div class="value green">€0</div></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('customers')">Πελάτες</div>
+  <div class="tab" onclick="showTab('danger')">Κίνδυνος</div>
+  <div class="tab" onclick="showTab('actions')">Action Plan</div>
+  <div class="tab" onclick="showTab('missing')">Missing Articles</div>
+  <div class="tab" onclick="showTab('trends')">Trends & Alerts</div>
+  <div class="tab" onclick="showTab('heatmap')">Monthly Heatmap</div>
+  <div class="tab" onclick="showTab('matrix')">Matrix</div>
+</div>
+
+<div id="tab-customers" class="tab-content active"><div class="section">
+<h2>Ανάλυση Πελατών <span class="badge">4 πελάτες</span></h2>
+<div class="toolbar"><input class="search" type="text" placeholder="Αναζήτηση πελάτη..." onkeyup="filterTable(this, 'cust-table')"></div>
+<div class="table-wrap"><table id="cust-table">
+<thead><tr><th>#</th><th class="left">Επωνυμία</th><th>ΑΦΜ</th><th>Πωλήσεις €</th><th>Προϊόντα</th><th>Key ✓</th><th>Key ✗</th><th>Coverage</th><th>Τιμολ.</th><th>M.O. Gap</th><th>Τελ. Παραγγ.</th><th>Ημ. Σιωπής</th><th>Score</th><th>Τακτικότητα</th></tr></thead><tbody>
+<tr class="bold">
+<td>1</td>
+<td class="left">Qogita EU B.V.</td>
+<td></td>
+<td class="right">€236,674</td>
+<td>194</td>
+<td style="color:var(--green)">3</td>
+<td style="color:var(--red)">49</td>
+<td><span class="pill vlow">6%</span></td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="pill na">N/A</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td class="left">QOGITA UK LTD</td>
+<td></td>
+<td class="right">€38,556</td>
+<td>34</td>
+<td style="color:var(--green)">0</td>
+<td style="color:var(--red)">52</td>
+<td><span class="pill vlow">0%</span></td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="pill na">N/A</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td class="left">MORONI 97 EOOD</td>
+<td></td>
+<td class="right">€13,399</td>
+<td>4</td>
+<td style="color:var(--green)">0</td>
+<td style="color:var(--red)">52</td>
+<td><span class="pill vlow">0%</span></td>
+<td>2</td>
+<td>8</td>
+<td>2025-01-15</td>
+<td><span class="pill danger">426</span></td>
+<td>18</td>
+<td><span class="pill inactive">Ανενεργός/Σποραδικός</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td>998356732</td>
+<td class="right">€4,127</td>
+<td>8</td>
+<td style="color:var(--green)">6</td>
+<td style="color:var(--red)">46</td>
+<td><span class="pill vlow">12%</span></td>
+<td>7</td>
+<td>26</td>
+<td>2025-06-12</td>
+<td><span class="pill danger">278</span></td>
+<td>36</td>
+<td><span class="pill sparse">Αραιός</span></td>
+</tr>
+</tbody></table></div></div></div>
+<div id="tab-danger" class="tab-content"><div class="two-col">
+<div class="section"><h2 style="color:var(--red)">🚨 Danger Zone <span class="badge" style="background:var(--red)">0</span></h2>
+<p style="color:var(--green);font-weight:600;text-align:center;padding:40px">✅ Κανένας πελάτης σε κίνδυνο!</p>
+</div>
+<div class="section"><h2 style="color:var(--green)">🎯 Low Hanging Fruit <span class="badge" style="background:var(--green)">0</span></h2>
+<p style="color:#666;text-align:center;padding:40px">Κανένας τακτικός με χαμηλή κάλυψη</p>
+</div></div></div>
+<div id="tab-actions" class="tab-content"><div class="section">
+<h2>Action Plan <span class="badge">0 ενέργειες</span></h2>
+<div class="table-wrap"><table><thead><tr><th>Priority</th><th class="left">Πελάτης</th><th>Πωλήσεις</th><th class="left">Πρόβλημα</th><th class="left">Ενέργεια</th><th>Δυνητικό €</th></tr></thead><tbody>
+</tbody><tfoot><tr style="background:var(--dark);color:white;font-weight:700"><td colspan="5" style="text-align:right;padding:10px">ΣΥΝΟΛΟ ΔΥΝΗΤΙΚΟ</td><td style="text-align:right;padding:10px">€0</td></tr></tfoot></table></div></div></div>
+<div id="tab-missing" class="tab-content"><div class="section">
+<h2>Missing Key Articles <span class="badge">40 gaps</span></h2>
+<div class="toolbar"><input class="search" type="text" placeholder="Αναζήτηση..." onkeyup="filterTable(this, 'miss-table')"></div>
+<div class="table-wrap"><table id="miss-table"><thead><tr><th class="left">Πελάτης</th><th>Πωλ. Πελ.</th><th class="left">Missing Article</th><th>Κωδικός</th><th>Market Value</th><th>Αγοραστές</th></tr></thead><tbody>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td>16309075</td>
+<td class="right">€43,067</td>
+<td>88</td></tr>
+<tr><td class="left">Qogita EU B.V.</td>
+<td class="right">€236,674</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">QOGITA UK LTD</td>
+<td class="right">€38,556</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td>211564620</td>
+<td class="right">€206,599</td>
+<td>121</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td>211565620</td>
+<td class="right">€109,271</td>
+<td>116</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)</td>
+<td>14033033</td>
+<td class="right">€94,664</td>
+<td>69</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td>211563620</td>
+<td class="right">€70,255</td>
+<td>103</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td>18033033</td>
+<td class="right">€55,475</td>
+<td>96</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td>930242161</td>
+<td class="right">€44,918</td>
+<td>64</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X</td>
+<td>263147200</td>
+<td class="right">€90,904</td>
+<td>64</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263137200</td>
+<td class="right">€88,353</td>
+<td>61</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td>930342161</td>
+<td class="right">€57,297</td>
+<td>71</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td>
+<td>2105030</td>
+<td class="right">€49,950</td>
+<td>42</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td>16309075</td>
+<td class="right">€43,067</td>
+<td>88</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td>945342650</td>
+<td class="right">€41,197</td>
+<td>15</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ</td>
+<td>20508140</td>
+<td class="right">€36,015</td>
+<td>50</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ) 4 X </td>
+<td>263127200</td>
+<td class="right">€32,681</td>
+<td>48</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td>930442161</td>
+<td class="right">€32,340</td>
+<td>65</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 πακέτα</td>
+<td>17005133</td>
+<td class="right">€31,199</td>
+<td>79</td></tr>
+</tbody></table></div></div></div>
+<div id="tab-trends" class="tab-content"><div class="two-col">
+<div class="section"><h2 style="color:var(--red)">📉 Alerts — Πτώση/Σταμάτημα <span class="badge" style="background:var(--red)">6</span></h2>
+<div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>Σύνολο €</th></tr></thead><tbody>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td>
+<td class="right">€928</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td>
+<td class="right">€859</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">PAMPERS WIPES FRESH MONTHLY (1x12x5</td>
+<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td>
+<td class="right">€765</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td>
+<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td>
+<td class="right">€491</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X</td>
+<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td>
+<td class="right">€323</td></tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td>
+<td class="right">€284</td></tr>
+</tbody></table></div></div>
+<div class="section"><h2 style="color:var(--green)">📈 Growth — Άνοδος <span class="badge" style="background:var(--green)">0</span></h2>
+<div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>Σύνολο €</th></tr></thead><tbody>
+</tbody></table></div></div>
+</div></div>
+<div id="tab-heatmap" class="tab-content"><div class="section">
+<h2>Monthly Activity Heatmap</h2>
+<div class="table-wrap"><table><thead><tr><th class="left">Πελάτης</th><th>Πωλήσεις</th>
+<th style="font-size:0.75em;padding:4px">Ι25</th>
+<th style="font-size:0.75em;padding:4px">Φ25</th>
+<th style="font-size:0.75em;padding:4px">Μ25</th>
+<th style="font-size:0.75em;padding:4px">Α25</th>
+<th style="font-size:0.75em;padding:4px">Μα25</th>
+<th style="font-size:0.75em;padding:4px">Ιν25</th>
+<th style="font-size:0.75em;padding:4px">Ιλ25</th>
+<th style="font-size:0.75em;padding:4px">Αυ25</th>
+<th style="font-size:0.75em;padding:4px">Σ25</th>
+<th style="font-size:0.75em;padding:4px">Ο25</th>
+<th style="font-size:0.75em;padding:4px">Ν25</th>
+<th style="font-size:0.75em;padding:4px">Δ25</th>
+<th style="font-size:0.75em;padding:4px">Ι26</th>
+<th style="font-size:0.75em;padding:4px">Φ26</th>
+<th style="font-size:0.75em;padding:4px">Μ26</th>
+</tr></thead><tbody>
+<tr><td class="left">MORONI 97 EOOD</td>
+<td class="right">€13,399</td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+</tr>
+<tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td class="right">€4,127</td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot active">●</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+<td><span class="dot inactive">○</span></td>
+</tr>
+</tbody></table></div></div></div>
+<div id="tab-matrix" class="tab-content"><div class="section">
+<h2>Matrix Πελατών × Key Articles</h2>
+<div class="table-wrap"><table><thead><tr><th class="left" style="min-width:200px">Πελάτης</th><th>Cov%</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera slip Large 4 πακ χ 20 τμχ">21156462</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera slip X-Large 4 πακ χ 20 τμχ">21156562</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (60x90)">14033033</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ) 4 X 20">26314720</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ) 4 X 20">26313720</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera slip medium 4 πακ χ 20 τμχ">21156362</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Pants Plus L 8πακ Χ 14τμχ">93034216</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)">18033033</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τμχ">2105030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Pants Plus M 8πακ Χ 14τμχ">93024216</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)">16309075</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20">94534265</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ">20508140</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ) 4 X 20">26312720</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Pants Plus XL 4πακ Χ 14τμχ">93044216</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 πακέτα">17005133</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASY ADULT PANTS MEDIUM 30 TΜΧ Χ 4 ΠΑΚ">13022030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ">13032030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Easyslip ανοιχτή πάνα Medium ΝΥΧΤΑΣ (4x20)">2105021</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA Ad.SLIP Maxi Night MEDIUM (ΜΩΒ) 20 ΤΜΧ x 4 ΠΑΚ">94523265</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera bed Υποσέντονα  12 πακέτα Χ 10 τεμάχια (60x90)">15033033</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Suprem MEN super 21 TMX X 7 ΠΑΚ">LSFE3181</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASYPANTS ΝΥΧΤΑΣ LARGE 4ΠΑΚ Χ 18ΤΜΧ">13034000</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE SUPREM ADULT PANTS L MAXI 14 TMX X 8 ΠΑΚ">LSPU0321</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SEPTONA BW CNC CHAMOMILE 80 (*18)">21010100</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASY ADULT PANTS X-LARGE 30 TΜΧ Χ 4 ΠΑΚ">13042030</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE SUPREM ADULT PANTS XL MAXI-(8x14)">LSPU0421</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA SOFT XL 40TEM x24ΠΑΚ">9188888</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASYPANTS ΝΥΧΤΑΣ MEDIUM 4ΠΑΚ Χ 20ΤΜΧ">13024000</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Easypet XL 60x90, 30pcs x 2">16292122</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE ακράτειας Supr. Light Super 30 ΤΜΧ Χ 8 ΠΑΚ">LSP20061</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="ID SLIP Super LARGE 15 TMX x 6 ΠΑΚ">56303751</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="BEBINO παιδική πάνα JUNIOR No 5 11-25kg  5πακΧ26τμχ">887126</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="iD Expert Light BTBS Extra  28τμχ χ 10 πακ">51600402</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA LADY SUPER 30 πακ x 10">20506140</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="EASYPET M 60x60cm 30τεμ x 4ΠΑΚ/ΔΕΜΑ">16268000</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="Kera bed Υποσέντονα  60x90  MAXI (Green) 5 πακέτα Χ 10 τεμάχια">16292130</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="BEBINO παιδική πάνα  No 6 XL 18-30 kg 5πακΧ24τμχ">887124</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="BEBINO παιδική πάνα MAXI No 4  7-18kg  5πακΧ38τμχ">887438</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 πακ">08052675</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="LILLE SUPREM ΣΕΡΒΙΕΤΑ ΑΚΡΑΤΕΙΑΣ ΜΑΧΙ 30 TMX X 6 ΠΑΚΕΤΑ">LSP23062</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA LADY EXTRA 24 πακ X 12">20504140</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SERENITY CARE WET WIPES 8bags Χ 63pcs">35102005</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 πακ">08052675</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SENSOCREAM 400 GR X 12">10067</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SERENITY LIGHT MAXI 4bags Χ 30pcs">37707300</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="KERA BED ΥΠΟΣΕΝΤΟΝΟ SUPER 60x90 25TMX (X4)">16253090</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY ALOE &amp; CAMOMILLA BABY WIPES 72 TMX - 24 πακ">08052675</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="ID ESSENTIAL LIGHT SUPER N6 28 X 6 ΠΑΚ">IDE20061</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SENSOCREAM 150 GR X 12">10164</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="SERENITY LIGHT SUPER 8bags Χ 30pcs">37706300</th>
+<th style="font-size:0.6em;padding:2px;writing-mode:vertical-rl;min-width:24px" title="PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPES 72 TMX - 24 πακ">08052675</th>
+</tr></thead><tbody>
+<tr><td class="left" style="font-size:0.8em">Qogita EU B.V.</td>
+<td><span class="pill vlow">6%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">QOGITA UK LTD</td>
+<td><span class="pill vlow">0%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">MORONI 97 EOOD</td>
+<td><span class="pill vlow">0%</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+<tr><td class="left" style="font-size:0.8em">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td>
+<td><span class="pill vlow">12%</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx yes">✓</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+<td><span class="mx no">✗</span></td>
+</tr>
+</tbody></table></div></div></div>
+
+</div>
+
+<div class="footer">
+  EASYCARE IKE — Commercial Intelligence Dashboard | Generated 17/03/2026 13:37 | Powered by Python & Data
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function filterTable(input, tableId) {
+  const filter = input.value.toUpperCase();
+  const rows = document.getElementById(tableId).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+  for (let row of rows) {
+    const txt = row.textContent.toUpperCase();
+    row.style.display = txt.includes(filter) ? '' : 'none';
+  }
+}
+
+// Make table headers sortable
+document.querySelectorAll('table').forEach(table => {
+  const headers = table.querySelectorAll('th');
+  headers.forEach((th, idx) => {
+    th.style.cursor = 'pointer';
+    th.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      if (!tbody) return;
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const dir = th.dataset.dir === 'asc' ? 'desc' : 'asc';
+      th.dataset.dir = dir;
+      rows.sort((a, b) => {
+        let av = a.cells[idx]?.textContent.trim() || '';
+        let bv = b.cells[idx]?.textContent.trim() || '';
+        // Try numeric
+        let an = parseFloat(av.replace(/[€,%]/g,'').replace(/,/g,''));
+        let bn = parseFloat(bv.replace(/[€,%]/g,'').replace(/,/g,''));
+        if (!isNaN(an) && !isNaN(bn)) {
+          return dir === 'asc' ? an - bn : bn - an;
+        }
+        return dir === 'asc' ? av.localeCompare(bv, 'el') : bv.localeCompare(av, 'el');
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+});
+</script>
+</body></html>
