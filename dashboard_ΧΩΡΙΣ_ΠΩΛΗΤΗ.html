@@ -96,27 +96,27 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <div id="login-error"></div><button id="login-btn" onclick="checkPin()">Είσοδος</button></div></div>
 <div id="app">
 <div class="header"><h1>EASYCARE IKE — Commercial Dashboard</h1>
-<div class="sub">Πωλητής: <strong>ΧΩΡΙΣ ΠΩΛΗΤΗ</strong> | Περίοδος: 01/01/2025 - 15/03/2026 (15 months) | Ανάλυση: 17/03/2026 | 15 μήνες</div></div>
+<div class="sub">Πωλητής: <strong>ΧΩΡΙΣ ΠΩΛΗΤΗ</strong> | Περίοδος: 01/01/2025 - 15/03/2026 (15 months) | Ανάλυση: 03/04/2026 | 15 μήνες</div></div>
 <div class="container">
 <div class="kpi-row">
 <div class="kpi"><div class="label">Πωλήσεις</div><div class="value blue">€376,479</div></div>
-<div class="kpi"><div class="label">Πελάτες</div><div class="value blue">51</div></div>
+<div class="kpi"><div class="label">Πελάτες</div><div class="value blue">62</div></div>
 <div class="kpi"><div class="label">Τακτικοί</div><div class="value green">0</div></div>
 <div class="kpi"><div class="label">Σε Κίνδυνο</div><div class="value red">2</div></div>
 <div class="kpi"><div class="label">Μ.Ο. Coverage</div><div class="value blue">11%</div></div>
 <div class="kpi"><div class="label">Δυνητικό €</div><div class="value green">€2,178</div></div>
 </div>
 <div class="tabs">
-<div class="tab active" onclick="showTab('customers')">Πελάτες (51)</div>
+<div class="tab active" onclick="showTab('customers')">Πελάτες (62)</div>
 <div class="tab" onclick="showTab('danger')">Κίνδυνος (2)</div>
 <div class="tab" onclick="showTab('actions')">Actions (2)</div>
 <div class="tab" onclick="showTab('missing')">Missing (510)</div>
-<div class="tab" onclick="showTab('trends')">Alerts (197) / Growth (4)</div>
-<div class="tab" onclick="showTab('heatmap')">Heatmap (51)</div>
-<div class="tab" onclick="showTab('prodhm')">Product Heatmap (51)</div>
+<div class="tab" onclick="showTab('trends')">Alerts (192) / Growth (9)</div>
+<div class="tab" onclick="showTab('heatmap')">Heatmap (62)</div>
+<div class="tab" onclick="showTab('prodhm')">Product Heatmap (62)</div>
 <div class="tab" onclick="showTab('matrix')">Matrix (51)</div>
 </div>
-<div id="tab-customers" class="tab-content active"><div class="section"><h2>Ανάλυση Πελατών <span class="badge">51</span></h2>
+<div id="tab-customers" class="tab-content active"><div class="section"><h2>Ανάλυση Πελατών <span class="badge">62</span></h2>
 <div class="toolbar"><input class="search" type="text" placeholder="Αναζήτηση πελάτη..." onkeyup="filterTable(this,'cust-table')"></div>
 <div class="table-wrap"><table id="cust-table"><thead><tr><th>#</th><th class="left">Επωνυμία</th><th>ΑΦΜ</th><th>Πωλήσεις €</th><th>Προϊόντα</th><th>Key✓</th><th>Key✗</th><th>Coverage</th><th>Τιμολ.</th><th>M.O.Gap</th><th>Τελ.Παρ.</th><th>Ημ.Σιωπ.</th><th>Score</th><th>Τακτικότητα</th></tr></thead><tbody>
 <tr class="bold"><td>1</td><td class="left">Qogita EU B.V.</td><td></td><td class="right">€236,674</td><td>194</td>
@@ -157,15 +157,15 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 </tr>
 <tr><td>10</td><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟΣ</td><td>130500567</td><td class="right">€1,704</td><td>24</td>
 <td style="color:var(--green)">19</td><td style="color:var(--red)">33</td><td><span class="pill low">37%</span></td>
-<td>4</td><td>56</td><td>2025-10-31</td><td><span class="pill danger">137</span></td><td>17</td><td><span class="pill inactive">Ανενεργός/Σποραδικός</span></td>
+<td>5</td><td>77</td><td>2026-03-20</td><td><span class="pill ok">-3</span></td><td>53</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 <tr><td>11</td><td class="left">ΘΑΛΑΣΣΙΝΟΣ  ΑΡΓΥΡΙΟΣ ΠΑΝΑΓΙΩΤΗΣ</td><td>119227615</td><td class="right">€1,702</td><td>5</td>
 <td style="color:var(--green)">1</td><td style="color:var(--red)">51</td><td><span class="pill vlow">2%</span></td>
-<td>4</td><td>65</td><td>2025-10-27</td><td><span class="pill danger">141</span></td><td>20</td><td><span class="pill sparse">Αραιός</span></td>
+<td>5</td><td>88</td><td>2026-04-03</td><td><span class="pill ok">-17</span></td><td>59</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 <tr><td>12</td><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td>135572908</td><td class="right">€1,682</td><td>11</td>
 <td style="color:var(--green)">9</td><td style="color:var(--red)">43</td><td><span class="pill vlow">17%</span></td>
-<td>5</td><td>75</td><td>2025-11-28</td><td><span class="pill danger">109</span></td><td>26</td><td><span class="pill sparse">Αραιός</span></td>
+<td>6</td><td>85</td><td>2026-03-30</td><td><span class="pill ok">-13</span></td><td>65</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 <tr><td>13</td><td class="left">ΠΑΠΑΓΕΩΡΓΙΟΥ  ΑΝΔΡ.  ΧΡΥΣΑ</td><td>113221034</td><td class="right">€1,322</td><td>9</td>
 <td style="color:var(--green)">8</td><td style="color:var(--red)">44</td><td><span class="pill vlow">15%</span></td>
@@ -173,11 +173,11 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 </tr>
 <tr><td>14</td><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td>067163852</td><td class="right">€1,086</td><td>5</td>
 <td style="color:var(--green)">5</td><td style="color:var(--red)">47</td><td><span class="pill vlow">10%</span></td>
-<td>6</td><td>62</td><td>2025-12-19</td><td><span class="pill danger">88</span></td><td>33</td><td><span class="pill sparse">Αραιός</span></td>
+<td>7</td><td>67</td><td>2026-03-18</td><td><span class="pill ok">-1</span></td><td>67</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 <tr><td>15</td><td class="left">ΑΡΑΒΑΝΤΙΝΟΣ ΓΕΡΑΣΙΜΟΣ</td><td>064513236</td><td class="right">€1,043</td><td>9</td>
 <td style="color:var(--green)">4</td><td style="color:var(--red)">48</td><td><span class="pill vlow">8%</span></td>
-<td>4</td><td>63</td><td>2025-10-16</td><td><span class="pill danger">152</span></td><td>24</td><td><span class="pill sparse">Αραιός</span></td>
+<td>5</td><td>89</td><td>2026-04-01</td><td><span class="pill ok">-15</span></td><td>58</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 <tr><td>16</td><td class="left">ΝΑΝΟΠΟΥΛΟΣ  ΔΗΜΗΤΡΙΟΣ ΠΑΝΑΓΙΩΤΗΣ</td><td>070843924</td><td class="right">€1,041</td><td>1</td>
 <td style="color:var(--green)">0</td><td style="color:var(--red)">52</td><td><span class="pill vlow">0%</span></td>
@@ -322,6 +322,50 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td>51</td><td class="left">ΠΑΛΙΟΧΩΡΗ  ΚΩΝΣΤΑΝΤΟΥΛΑ ΠΑΝΑΓΙΩΤΗΣ</td><td>064706347</td><td class="right">€84</td><td>2</td>
 <td style="color:var(--green)">2</td><td style="color:var(--red)">50</td><td><span class="pill vlow">4%</span></td>
 <td>1</td><td>0</td><td>2025-05-14</td><td><span class="pill danger">307</span></td><td>3</td><td><span class="pill inactive">Ανενεργός/Σποραδικός</span></td>
+</tr>
+<tr><td>52</td><td class="left">EMEI 3099</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-31</td><td><span class="pill ok">-14</span></td><td>37</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>53</td><td class="left">ORIOTRIC ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑΙΡΕΙΑ</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-20</td><td><span class="pill ok">-3</span></td><td>34</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>54</td><td class="left">ΠΑΝΤΕΛΗ  ΕΛΕΝΗ ΑΓΓΕΛΟΣ</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-30</td><td><span class="pill ok">-13</span></td><td>37</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>55</td><td class="left">ΖΑΓΚΟΤΣΗΣ ΝΤΙΝΟΣ Ι Κ Ε</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-04-02</td><td><span class="pill ok">-16</span></td><td>38</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>56</td><td class="left">ALL ABOUT HOME Ε Ε</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-31</td><td><span class="pill ok">-14</span></td><td>37</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>57</td><td class="left">ΝΙΚ ΜΑΡΓΑΡΙΤΗΣ ΚΑΙ ΣΙΑ ΟΕ</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-20</td><td><span class="pill ok">-3</span></td><td>34</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>58</td><td class="left">SOCKLIK SASU</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-24</td><td><span class="pill ok">-7</span></td><td>35</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>59</td><td class="left">ΠΕΡΡΗΣ  ΙΑΚ ΔΗΜΗΤΡΙΟΣ</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-17</td><td><span class="pill ok">0</span></td><td>33</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>60</td><td class="left">ΜΑΚΡΗΣ  ΑΘΑΝΑΣΙΟΣ ΑΝΑΣΤΑΣΙΟΣ</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-31</td><td><span class="pill ok">-14</span></td><td>37</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>61</td><td class="left">ΕΛΕΝΗ  ΛΕΥΚΟΘΕΑ ΣΤΑΥΡΟΣ</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-03-18</td><td><span class="pill ok">-1</span></td><td>33</td><td><span class="pill sparse">Αραιός</span></td>
+</tr>
+<tr><td>62</td><td class="left">Β  ΣΤΑΥΡΑΚΑΚΗΣ Ο Ε</td><td></td><td class="right">-</td><td>0</td>
+<td style="color:var(--green)">0</td><td style="color:var(--red)">0</td><td><span class="pill vlow">0%</span></td>
+<td>1</td><td>0</td><td>2026-04-03</td><td><span class="pill ok">-17</span></td><td>38</td><td><span class="pill sparse">Αραιός</span></td>
 </tr>
 </tbody></table></div></div></div>
 <div id="tab-danger" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">🚨 Danger Zone <span class="badge" style="background:var(--red)">2</span></h2>
@@ -842,7 +886,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΛΙΑΚΑ  ΛΑΜΠΡΙΝΗ ΗΛΙΑΣ</td><td class="right">€139</td><td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x 18 τ</td><td>2105030</td><td class="right">€357</td><td>42</td></tr>
 <tr><td class="left">ΛΙΑΚΑ  ΛΑΜΠΡΙΝΗ ΗΛΙΑΣ</td><td class="right">€139</td><td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td><td>930242161</td><td class="right">€211</td><td>64</td></tr>
 </tbody></table></div></div></div>
-<div id="tab-trends" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">📉 Alerts <span class="badge" style="background:var(--red)">197</span></h2>
+<div id="tab-trends" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">📉 Alerts <span class="badge" style="background:var(--red)">192</span></h2>
 <div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>€</th></tr></thead><tbody>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera Slip Premium NIGHT MAXI  XLARG</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€1,732</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€1,639</td></tr>
@@ -889,19 +933,18 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Easypet XL 60x90, 30pcs x 2</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€519</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€515</td></tr>
 <tr><td class="left">ΕΛΕΝΗ ΣΤΑΘΟΥΛΗ ΚΑΙ ΣΙΑ ΟΕ</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€491</td></tr>
+<tr><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td class="left">Kera Slip Premium NIGHT MAXI MEDIUM</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€482</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera Slip Premium NIGHT MAXI MEDIUM</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€482</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€476</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">LILLE SUPREM ΣΕΡΒΙΕΤΑ ΑΚΡΑΤΕΙΑΣ ΜΑΧ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€470</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">EASYPANTS ΝΥΧΤΑΣ LARGE 4ΠΑΚ Χ 18ΤΜΧ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€467</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Kera Slip Premium NIGHT MAXI  XLARG</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€465</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Kera Slip Premium NIGHT MAXI  LARGE</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€443</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Χ.ΥΓ. VELOUR 3Φ DECO 10Ρx125GRx 7ΠΑ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€439</td></tr>
-<tr><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td class="left">Kera Slip Premium NIGHT MAXI MEDIUM</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€415</td></tr>
+<tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX </td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€421</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 2</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€412</td></tr>
-<tr><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€409</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera bed Υποσέντονα  12 πακέτα Χ 10</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€407</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€393</td></tr>
-<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€390</td></tr>
-<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€384</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">ID SLIP TBS PLUS S 14 ΤΜΧ x 4 ΠΑΚ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€371</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">KERA Ad.SLIP Maxi Night MEDIUM (ΜΩΒ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€367</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Χ.ΥΓ MAXI 2Φ DECO 40ΡΧ85gr (BC 1012</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€360</td></tr>
@@ -916,7 +959,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">ΧΕΙΡ/ΤΑ ΖΙΚ-ΖΑΚ MAXI ΛΕΥΚΗ Α! 200X2</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€321</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">iD Pants Bariatric XXL 4πακ Χ 12τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€320</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Χ.Κ ΕΠΑΓ/ΚΟ MAXI 3Φ ΛΕΥΚΟ DESL 2ΡΧ3</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€319</td></tr>
-<tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX </td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€314</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€317</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€311</td></tr>
 <tr><td class="left">ΚΑΡΚΑΚΕΛΑΣ  ΚΩΝΣΤΑΝΤΙΝΟΣ </td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€306</td></tr>
 <tr><td class="left">ΦΡΑΓΚΟΠΟΥΛΟΣ Κ &amp; ΣΙΑ Ε.Ε.</td><td class="left">Easyslip ανοιχτή πάνα Νυκτός Large-</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€293</td></tr>
@@ -928,6 +971,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX </td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€263</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€263</td></tr>
 <tr><td class="left">ΑΡΑΒΑΝΤΙΝΟΣ ΓΕΡΑΣΙΜΟΣ</td><td class="left">EASYPANTS ΝΥΧΤΑΣ LARGE 4ΠΑΚ Χ 18ΤΜΧ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€261</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€260</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€258</td></tr>
 <tr><td class="left">ΙΩΑΝΝΗΣ ΒΟΓΙΑΤΖΙΔΑΚΗΣ ΕΙΡ</td><td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 2</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€255</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">PAMPERS PREMIUM CARE ΜΕΓ 3 1X200 MS</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€252</td></tr>
@@ -939,7 +983,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">PAMPERS WIPES HARMONIE AQUA 1X15Χ48</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€233</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">EASYPANTS ΝΥΧΤΑΣ LARGE 4ΠΑΚ Χ 18ΤΜΧ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€232</td></tr>
 <tr><td class="left">ΧΙΝΗ ΑΙΚΑΤΕΡΙΝΗ ΗΛΙΑΣ</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€225</td></tr>
-<tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">Kera Slip Premium NIGHT MAXI  LARGE</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€210</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">EASYPANTS ΝΥΧΤΑΣ MEDIUM 4ΠΑΚ Χ 20ΤΜ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€207</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€204</td></tr>
 <tr><td class="left">ΠΑΠΑΓΕΩΡΓΙΟΥ  ΑΝΔΡ.  ΧΡΥΣ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€201</td></tr>
@@ -955,10 +998,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€173</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">iD Pants MAXI L 10TMX ( 8 ΠΑΚ/ΚΙΒ)</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€171</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">ID ΥΠΟΣΕΝΤΟΝΑ TOTAL PROTECT 60X90 Ν</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€171</td></tr>
+<tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€170</td></tr>
 <tr><td class="left">ΚΟΥΤΡΟΜΑΝΟΣ  ΠΑΝΑΓΙΩΤΗΣ Ι</td><td class="left">Kera bed Υποσέντονα  12 πακέτα Χ 10</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€169</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Easypet XL 60x90, 30pcs x 2</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€166</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">ΧΑΡΤ/ΛΑ FACIAL MAXI 2Φ 150Τ (BC 081</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€162</td></tr>
-<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€160</td></tr>
 <tr><td class="left">ΙΩΑΝΝΗΣ ΒΟΓΙΑΤΖΙΔΑΚΗΣ ΕΙΡ</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€159</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">BOBINA CARE STORES A! ΛΕΥΚΗ ΓΚΟΦΡΕ </td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€157</td></tr>
 <tr><td class="left">ΠΑΠΑΓΕΩΡΓΙΟΥ  ΑΝΔΡ.  ΧΡΥΣ</td><td class="left">Kera bed Υποσέντονα  12 πακέτα Χ 10</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€155</td></tr>
@@ -971,35 +1014,41 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Humana 1 800g MP  (x4) BABY MILK PO</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€139</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Χ.ΥΓ MAXI 2Φ DECO 40ΡΧ85gr (BC 1012</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€136</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">iD Pants Bariatric XXL 4πακ Χ 12τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€133</td></tr>
+<tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€132</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">iD Pants MAXI M 10TMX ( 8 ΠΑΚ/ΚΙΒ)</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€130</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">EASYPANTS ΝΥΧΤΑΣ MEDIUM 4ΠΑΚ Χ 20ΤΜ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€129</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">ΧΑΡΤ/ΤΑ MAXI 1Φ ΛΕΥΚΗ 33X33 200Τ (B</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€128</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">Suprem MEN super 21 TMX X 7 ΠΑΚ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€126</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">PAMPERS PREMIUM CARE ΜΕΓ 1 (1x156) </td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€122</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€119</td></tr>
-<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">iD Expert Light BTBS Normal  28 τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€117</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">PAMPERS WIPES SENSITIVE 1x15x80 EBO</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€117</td></tr>
 <tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€116</td></tr>
 <tr><td class="left">ΑΡΖΝ ΜΟΝΟΠΡΟΣΩΠΗ ΑΝΩΝΥΜΗ </td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€112</td></tr>
-<tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€112</td></tr>
 <tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">iD Expert Light BTBS Extra  28τμχ χ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€109</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">KERA SOFT XL 40TEM x24ΠΑΚ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€107</td></tr>
 <tr><td class="left">ΤΣΙΡΟΠΟΥΛΟΣ  ΣΠΥΡΙΔΩΝ ΝΙΚ</td><td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€106</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">LILLE SUPREM ADULT PANTS XL MAXI-(8</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€105</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">Kera bed Υποσέντονα  60x60  5 πακέτ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€105</td></tr>
-<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€104</td></tr>
 <tr><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€103</td></tr>
 <tr><td class="left">ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ</td><td class="left">PAMPERS WIPES SENSITIVE (1x12x52) E</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€102</td></tr>
 <tr><td class="left">ΙΩΑΝΝΗΣ ΒΟΓΙΑΤΖΙΔΑΚΗΣ ΕΙΡ</td><td class="left">ΧΑΡΤΟΜΑΝΤΙΛΑ  FACIAL PERLA 80 3φ 15</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€102</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Easy Lady Σερβιέτα ακράτειας MAXI P</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€98</td></tr>
 <tr><td class="left">ΚΩΤΣΟΥ ΝΙΚΟΛΑΟΣ ΚΑΙ ΣΙΑ Ε</td><td class="left">iD Pants TBS Plus S N1 14ΤΜΧ/8ΠΑΚ/Κ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€95</td></tr>
 <tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">Χ.ΥΓ MAXI 2Φ DECO 40ΡΧ85gr (BC 1012</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€95</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera bed Υποσέντονα  12 πακέτα Χ 10</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€91</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera Lady Maxi Σερβιέτα Ακράτειας 2</td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€90</td></tr>
+<tr><td class="left">ΜΕΛΙΣΣΑΡΑΤΟΣ  ΣΠΥΡΙΔΩΝ ΕΥ</td><td class="left">ΧΑΡΤ/ΛΑ FACIAL MAXI 2Φ 150Τ (BC 081</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€89</td></tr>
 </tbody></table></div></div>
-<div class="section"><h2 style="color:var(--green)">📈 Growth <span class="badge" style="background:var(--green)">4</span></h2>
+<div class="section"><h2 style="color:var(--green)">📈 Growth <span class="badge" style="background:var(--green)">9</span></h2>
 <div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>€</th></tr></thead><tbody>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€633</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">iD Expert Light BTBS Normal  28 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€197</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€185</td></tr>
 <tr><td class="left">ΜΑΡΙΝΗ  ΧΡΥΣΑΦΗ ΧΡΗΣΤΟΣ</td><td class="left">BEBINO παιδική πάνα JUNIOR No 5 11-</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€139</td></tr>
 <tr><td class="left">ΙΩΑΝΝΗΣ ΒΟΓΙΑΤΖΙΔΑΚΗΣ ΕΙΡ</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td><td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td><td class="right">€128</td></tr>
+<tr><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td class="left">iD Expert Light BTBS Extra  28τμχ χ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€117</td></tr>
 <tr><td class="left">ΙΩΑΝΝΗΣ ΒΟΓΙΑΤΖΙΔΑΚΗΣ ΕΙΡ</td><td class="left">Kera bed Υποσέντονα  60x60  5 πακέτ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€114</td></tr>
+<tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€113</td></tr>
 <tr><td class="left">ΙΩΑΝΝΗΣ ΒΟΓΙΑΤΖΙΔΑΚΗΣ ΕΙΡ</td><td class="left">kera Lady Σερβιέτα ακράτειας 16 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€89</td></tr>
 </tbody></table></div></div></div></div>
 <div id="tab-heatmap" class="tab-content"><div class="section"><h2>Monthly Sales Heatmap (€)</h2>
@@ -1148,7 +1197,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 </tr>
 <tr><td class="left">ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟΣ</td><td class="right" style="font-weight:600">€1,704</td>
-<td>4/15</td>
+<td>5/15</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
@@ -1163,7 +1212,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
-<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">395</td>
 </tr>
 <tr><td class="left">ΘΑΛΑΣΣΙΝΟΣ  ΑΡΓΥΡΙΟΣ ΠΑΝΑΓΙΩΤΗ</td><td class="right" style="font-weight:600">€1,702</td>
 <td>4/15</td>
@@ -1184,7 +1233,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 </tr>
 <tr><td class="left">ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ</td><td class="right" style="font-weight:600">€1,682</td>
-<td>5/15</td>
+<td>6/15</td>
 <td style="background:#E8F5E9;color:#333;font-size:.75em;font-weight:600;padding:3px">178</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#C6EFCE;color:#006100;font-size:.75em;font-weight:600;padding:3px">555</td>
@@ -1199,7 +1248,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
-<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#C6EFCE;color:#006100;font-size:.75em;font-weight:600;padding:3px">789</td>
 </tr>
 <tr><td class="left">ΠΑΠΑΓΕΩΡΓΙΟΥ  ΑΝΔΡ.  ΧΡΥΣΑ</td><td class="right" style="font-weight:600">€1,322</td>
 <td>8/15</td>
@@ -1220,7 +1269,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 </tr>
 <tr><td class="left">ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ</td><td class="right" style="font-weight:600">€1,086</td>
-<td>6/15</td>
+<td>7/15</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#E8F5E9;color:#333;font-size:.75em;font-weight:600;padding:3px">178</td>
 <td style="background:#E8F5E9;color:#333;font-size:.75em;font-weight:600;padding:3px">193</td>
@@ -1235,7 +1284,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#E8F5E9;color:#333;font-size:.75em;font-weight:600;padding:3px">164</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
-<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#E8F5E9;color:#333;font-size:.75em;font-weight:600;padding:3px">184</td>
 </tr>
 <tr><td class="left">ΑΡΑΒΑΝΤΙΝΟΣ ΓΕΡΑΣΙΜΟΣ</td><td class="right" style="font-weight:600">€1,043</td>
 <td>4/15</td>
@@ -1903,9 +1952,207 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 </tr>
+<tr><td class="left">EMEI 3099</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">295</td>
+</tr>
+<tr><td class="left">ORIOTRIC ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚ</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">234</td>
+</tr>
+<tr><td class="left">ΠΑΝΤΕΛΗ  ΕΛΕΝΗ ΑΓΓΕΛΟΣ</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">325</td>
+</tr>
+<tr><td class="left">ΖΑΓΚΟΤΣΗΣ ΝΤΙΝΟΣ Ι Κ Ε</td><td class="right" style="font-weight:600">-</td>
+<td>0/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+</tr>
+<tr><td class="left">ALL ABOUT HOME Ε Ε</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">1,253</td>
+</tr>
+<tr><td class="left">ΝΙΚ ΜΑΡΓΑΡΙΤΗΣ ΚΑΙ ΣΙΑ ΟΕ</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">225</td>
+</tr>
+<tr><td class="left">SOCKLIK SASU</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">5,148</td>
+</tr>
+<tr><td class="left">ΠΕΡΡΗΣ  ΙΑΚ ΔΗΜΗΤΡΙΟΣ</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">350</td>
+</tr>
+<tr><td class="left">ΜΑΚΡΗΣ  ΑΘΑΝΑΣΙΟΣ ΑΝΑΣΤΑΣΙΟΣ</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">258</td>
+</tr>
+<tr><td class="left">ΕΛΕΝΗ  ΛΕΥΚΟΘΕΑ ΣΤΑΥΡΟΣ</td><td class="right" style="font-weight:600">-</td>
+<td>1/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#FFEB9C;color:#856404;font-size:.75em;font-weight:600;padding:3px">280</td>
+</tr>
+<tr><td class="left">Β  ΣΤΑΥΡΑΚΑΚΗΣ Ο Ε</td><td class="right" style="font-weight:600">-</td>
+<td>0/15</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+</tr>
 </tbody></table></div></div></div>
 <div id="tab-prodhm" class="tab-content"><div class="section">
-<h2>Customer × Product Heatmap <span class="badge">51 πελάτες</span></h2>
+<h2>Customer × Product Heatmap <span class="badge">62 πελάτες</span></h2>
 <p style="color:#888;font-size:.85em;margin-bottom:16px">Μηνιαίες πωλήσεις (€) ανά προϊόν ανά πελάτη — κλικ για expand/collapse</p>
 <div class="cust-hm-header" onclick="toggleHm('hm-2')">
 <span>ΜΩΡΑΙΤΗΣ ΓΕΩΡΓΙΟΣ ΚΑΙ ΣΙΑ Ε Ε — €26,752 — Αραιός</span>
@@ -6508,8 +6755,8 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-9')">
-<span>ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟΣ — €1,704 — Ανενεργός/Σποραδικός</span>
-<span class="info">23 προϊόντα | click to collapse</span></div>
+<span>ΔΟΥΚΑΣ  ΝΙΚΟΛΑΟΣ ΕΥΑΓΓΕΛΟΣ — €1,704 — Μέτρια Τακτικότητα</span>
+<span class="info">24 προϊόντα | click to collapse</span></div>
 <div class="cust-hm-body" id="hm-9">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
 <th style="font-size:.7em;padding:3px">Ι25</th>
@@ -6529,7 +6776,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <th style="font-size:.7em;padding:3px">Μ26</th>
 <th>Trend</th></tr></thead><tbody>
 <tr><td class="left" title="16309075">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
-<td class="right" style="font-weight:600">€314</td>
+<td class="right" style="font-weight:600">€421</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -6544,10 +6791,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-pos">107</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
 <tr><td class="left" title="263137200">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ)</td>
-<td class="right" style="font-weight:600">€210</td>
+<td class="right" style="font-weight:600">€282</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -6562,8 +6809,44 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">72</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€170</td>
 <td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">28</td>
+<td class="hm-val hm-pos">84</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
+<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€132</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">26</td>
+<td class="hm-val hm-pos">53</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">54</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
 <tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
 <td class="right" style="font-weight:600">€116</td>
 <td class="hm-val hm-zero">-</td>
@@ -6582,24 +6865,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
-<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€112</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">28</td>
-<td class="hm-val hm-pos">84</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td></tr>
 <tr><td class="left" title="LSPU0321">LILLE SUPREM ADULT PANTS L MAXI 14 TMX X 8 ΠΑ</td>
 <td class="right" style="font-weight:600">€109</td>
 <td class="hm-val hm-zero">-</td>
@@ -6636,24 +6901,24 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€78</td>
+<tr><td class="left" title="263147200">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ</td>
+<td class="right" style="font-weight:600">€79</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">26</td>
-<td class="hm-val hm-pos">53</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">39</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td></tr>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">40</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="81773414">PAMPERS WIPES HARMONIE AQUA 1X15Χ48E-BOX</td>
 <td class="right" style="font-weight:600">€78</td>
 <td class="hm-val hm-zero">-</td>
@@ -6690,6 +6955,24 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td></tr>
+<tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€65</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">32</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">33</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="17005133">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 π</td>
 <td class="right" style="font-weight:600">€60</td>
 <td class="hm-val hm-zero">-</td>
@@ -6780,41 +7063,23 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="263147200">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ</td>
-<td class="right" style="font-weight:600">€39</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">39</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<tr><td class="left" title="263127200">Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ)</td>
 <td class="right" style="font-weight:600">€32</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">32</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="20508140">kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ</td>
 <td class="right" style="font-weight:600">€31</td>
@@ -6944,7 +7209,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-10')">
-<span>ΘΑΛΑΣΣΙΝΟΣ  ΑΡΓΥΡΙΟΣ ΠΑΝΑΓΙΩΤΗΣ — €1,702 — Αραιός</span>
+<span>ΘΑΛΑΣΣΙΝΟΣ  ΑΡΓΥΡΙΟΣ ΠΑΝΑΓΙΩΤΗΣ — €1,702 — Μέτρια Τακτικότητα</span>
 <span class="info">5 προϊόντα | click to expand</span></div>
 <div class="cust-hm-body collapsed" id="hm-10">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
@@ -7056,7 +7321,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-11')">
-<span>ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ — €1,682 — Αραιός</span>
+<span>ΚΟΛΥΒΑΝΗ ΑΛΙΚΗ — €1,682 — Μέτρια Τακτικότητα</span>
 <span class="info">10 προϊόντα | click to expand</span></div>
 <div class="cust-hm-body collapsed" id="hm-11">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
@@ -7076,26 +7341,8 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <th style="font-size:.7em;padding:3px">Φ26</th>
 <th style="font-size:.7em;padding:3px">Μ26</th>
 <th>Trend</th></tr></thead><tbody>
-<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€390</td>
-<td class="hm-val hm-pos">113</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">28</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">166</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">84</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
 <tr><td class="left" title="930242161">Kera Pants Plus M 8πακ Χ 14τμχ</td>
-<td class="right" style="font-weight:600">€384</td>
+<td class="right" style="font-weight:600">€633</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">238</td>
@@ -7110,10 +7357,28 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">248</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
+<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€476</td>
+<td class="hm-val hm-pos">113</td>
 <td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-pos">28</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">166</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">84</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">86</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
 <tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
-<td class="right" style="font-weight:600">€208</td>
+<td class="right" style="font-weight:600">€317</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">208</td>
@@ -7128,10 +7393,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<td class="hm-val hm-pos">108</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
 <tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€160</td>
+<td class="right" style="font-weight:600">€260</td>
 <td class="hm-val hm-pos">65</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -7146,10 +7411,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td></tr>
+<td class="hm-val hm-pos">99</td>
+<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
 <tr><td class="left" title="5160030280">iD Expert Light BTBS Normal  28 τμχ χ 12 πακ</td>
-<td class="right" style="font-weight:600">€117</td>
+<td class="right" style="font-weight:600">€197</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -7164,8 +7429,44 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">80</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
+<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€185</td>
 <td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">52</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">53</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">81</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
+<tr><td class="left" title="930442161">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td class="right" style="font-weight:600">€113</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">27</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">86</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
 <tr><td class="left" title="5160040280">iD Expert Light BTBS Extra  28τμχ χ 10 πακ</td>
 <td class="right" style="font-weight:600">€109</td>
 <td class="hm-val hm-zero">-</td>
@@ -7178,24 +7479,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">73</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
-<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€104</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">52</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">53</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -7238,24 +7521,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
-<tr><td class="left" title="930442161">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
-<td class="right" style="font-weight:600">€27</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">27</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-12')">
 <span>ΠΑΠΑΓΕΩΡΓΙΟΥ  ΑΝΔΡ.  ΧΡΥΣΑ — €1,322 — Μέτρια Τακτικότητα</span>
@@ -7442,8 +7707,8 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-13')">
-<span>ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ — €1,086 — Αραιός</span>
-<span class="info">5 προϊόντα | click to expand</span></div>
+<span>ΑΡΓΥΡΙΟΥ Α. ΚΑΤΕΡΙΝΑ — €1,086 — Μέτρια Τακτικότητα</span>
+<span class="info">6 προϊόντα | click to expand</span></div>
 <div class="cust-hm-body collapsed" id="hm-13">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
 <th style="font-size:.7em;padding:3px">Ι25</th>
@@ -7463,7 +7728,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <th style="font-size:.7em;padding:3px">Μ26</th>
 <th>Trend</th></tr></thead><tbody>
 <tr><td class="left" title="263127200">Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ)</td>
-<td class="right" style="font-weight:600">€415</td>
+<td class="right" style="font-weight:600">€482</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">94</td>
 <td class="hm-val hm-pos">125</td>
@@ -7478,10 +7743,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">66</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-pos">67</td>
+<td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td></tr>
 <tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€409</td>
+<td class="right" style="font-weight:600">€470</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">84</td>
 <td class="hm-val hm-pos">28</td>
@@ -7496,8 +7761,26 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">59</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">60</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="5160040280">iD Expert Light BTBS Extra  28τμχ χ 10 πακ</td>
+<td class="right" style="font-weight:600">€117</td>
 <td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">39</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">39</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">39</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
 <tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
 <td class="right" style="font-weight:600">€103</td>
 <td class="hm-val hm-zero">-</td>
@@ -7534,27 +7817,27 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td></tr>
-<tr><td class="left" title="5160040280">iD Expert Light BTBS Extra  28τμχ χ 10 πακ</td>
-<td class="right" style="font-weight:600">€77</td>
+<tr><td class="left" title="110130111">VIR EXTRA slip SMALL 4 ΠΑΚ x 20 TMX</td>
+<td class="right" style="font-weight:600">€17</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">39</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">39</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td></tr>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">17</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-14')">
-<span>ΑΡΑΒΑΝΤΙΝΟΣ ΓΕΡΑΣΙΜΟΣ — €1,043 — Αραιός</span>
+<span>ΑΡΑΒΑΝΤΙΝΟΣ ΓΕΡΑΣΙΜΟΣ — €1,043 — Μέτρια Τακτικότητα</span>
 <span class="info">8 προϊόντα | click to expand</span></div>
 <div class="cust-hm-body collapsed" id="hm-14">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
@@ -11715,6 +11998,1734 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 </tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-51')">
+<span>EMEI 3099 — - — Αραιός</span>
+<span class="info">3 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-51">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="945342650">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td class="right" style="font-weight:600">€106</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">106</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td class="right" style="font-weight:600">€104</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">104</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="945232650">KERA Ad.SLIP Maxi Night MEDIUM (ΜΩΒ) 20 ΤΜΧ x</td>
+<td class="right" style="font-weight:600">€85</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">85</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-52')">
+<span>ORIOTRIC ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑΙΡΕΙΑ — - — Αραιός</span>
+<span class="info">7 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-52">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="13042030">EASY ADULT PANTS X-LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€50</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">50</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="13032030">EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€48</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">48</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="263147200">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ</td>
+<td class="right" style="font-weight:600">€40</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">40</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="263137200">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ)</td>
+<td class="right" style="font-weight:600">€36</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">36</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16309075">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td class="right" style="font-weight:600">€36</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">36</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
+<td class="right" style="font-weight:600">€14</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">14</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€10</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">10</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-53')">
+<span>ΠΑΝΤΕΛΗ  ΕΛΕΝΗ ΑΓΓΕΛΟΣ — - — Αραιός</span>
+<span class="info">8 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-53">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="140330111">VIR BEDSHEET  60X90 EXTRA 4 ΠΑΚ Χ 30 ΤΜΧ</td>
+<td class="right" style="font-weight:600">€92</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">92</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€57</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="13042030">EASY ADULT PANTS X-LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€50</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">50</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="37706300000">SERENITY LIGHT SUPER 8bags Χ 30pcs</td>
+<td class="right" style="font-weight:600">€45</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">45</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="17005133">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 π</td>
+<td class="right" style="font-weight:600">€31</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">31</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="18033033">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td class="right" style="font-weight:600">€25</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">25</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290523">PIUMA LADY ALOE &amp; CAMOMILLA BABY WIPES 72 TMX</td>
+<td class="right" style="font-weight:600">€14</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">14</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€10</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">10</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-55')">
+<span>ALL ABOUT HOME Ε Ε — - — Αραιός</span>
+<span class="info">34 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-55">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="10067">SENSOCREAM 400 GR X 12</td>
+<td class="right" style="font-weight:600">€104</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">104</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="10164">SENSOCREAM 150 GR X 12</td>
+<td class="right" style="font-weight:600">€63</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">63</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
+<td class="right" style="font-weight:600">€58</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">58</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="945342650">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td>
+<td class="right" style="font-weight:600">€56</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">56</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="930242161">Kera Pants Plus M 8πακ Χ 14τμχ</td>
+<td class="right" style="font-weight:600">€53</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">53</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="945232650">KERA Ad.SLIP Maxi Night MEDIUM (ΜΩΒ) 20 ΤΜΧ x</td>
+<td class="right" style="font-weight:600">€51</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">51</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="13042030">EASY ADULT PANTS X-LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€49</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">49</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="13032030">EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€47</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">47</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16268000">EASYPET M 60x60cm 30τεμ x 4ΠΑΚ/ΔΕΜΑ</td>
+<td class="right" style="font-weight:600">€46</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">46</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="37706300000">SERENITY LIGHT SUPER 8bags Χ 30pcs</td>
+<td class="right" style="font-weight:600">€45</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">45</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="13022030">EASY ADULT PANTS MEDIUM 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€43</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">43</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="20506140">KERA LADY SUPER 30 πακ x 10</td>
+<td class="right" style="font-weight:600">€42</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">42</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="263147200">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ</td>
+<td class="right" style="font-weight:600">€40</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">40</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="263137200">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ)</td>
+<td class="right" style="font-weight:600">€35</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">35</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16309075">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
+<td class="right" style="font-weight:600">€35</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">35</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€32</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">32</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="20508140">kera Lady Σερβιέτα ακράτειας 16 τμχ χ 12 πακ</td>
+<td class="right" style="font-weight:600">€32</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">32</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="20504140">KERA LADY EXTRA 24 πακ X 12</td>
+<td class="right" style="font-weight:600">€32</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">32</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="263127200">Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ)</td>
+<td class="right" style="font-weight:600">€31</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">31</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="930442161">Kera Pants Plus XL 4πακ Χ 14τμχ</td>
+<td class="right" style="font-weight:600">€31</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">31</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="37707300000">SERENITY LIGHT MAXI 4bags Χ 30pcs</td>
+<td class="right" style="font-weight:600">€31</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">31</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="17005133">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 π</td>
+<td class="right" style="font-weight:600">€30</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">30</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="2105030">Easyslip ανοιχτή πάνα Νυκτός Large-Xl 4 πακ x</td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16292122">Easypet XL 60x90, 30pcs x 2</td>
+<td class="right" style="font-weight:600">€28</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">28</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€28</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">28</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€28</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">28</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="14033033">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (6</td>
+<td class="right" style="font-weight:600">€28</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">28</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€26</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">26</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="18033033">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td class="right" style="font-weight:600">€24</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">24</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16253090">KERA BED ΥΠΟΣΕΝΤΟΝΟ SUPER 60x90 25TMX (X4)</td>
+<td class="right" style="font-weight:600">€19</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">19</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16262130">Kera bed Υποσέντονα  60x60  5 πακέτα Χ 15 τεμ</td>
+<td class="right" style="font-weight:600">€15</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">15</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290967">PIUMA LADY BIO BABY WET WIPES 72 TMX - 24 πακ</td>
+<td class="right" style="font-weight:600">€15</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">15</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
+<td class="right" style="font-weight:600">€14</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">14</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="1805061643063">PET μαντ.για κατοικίδια με ταλκ 36 ΤΜΧ - 18πα</td>
+<td class="right" style="font-weight:600">€13</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">13</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-56')">
+<span>ΝΙΚ ΜΑΡΓΑΡΙΤΗΣ ΚΑΙ ΣΙΑ ΟΕ — - — Αραιός</span>
+<span class="info">6 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-56">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="08052675290028">PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 </td>
+<td class="right" style="font-weight:600">€43</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">43</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290523">PIUMA LADY ALOE &amp; CAMOMILLA BABY WIPES 72 TMX</td>
+<td class="right" style="font-weight:600">€43</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">43</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290561">PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPE</td>
+<td class="right" style="font-weight:600">€43</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">43</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
+<td class="right" style="font-weight:600">€43</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">43</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="0805675290622">PIUMA LADY TALCO &amp; AVENA BABY WIPES 72 TMX - </td>
+<td class="right" style="font-weight:600">€43</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">43</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€10</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">10</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-57')">
+<span>SOCKLIK SASU — - — Αραιός</span>
+<span class="info">1 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-57">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="80337317">ORAL B IRRIGATOR 1X1</td>
+<td class="right" style="font-weight:600">€5,148</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">5,148</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-58')">
+<span>ΠΕΡΡΗΣ  ΙΑΚ ΔΗΜΗΤΡΙΟΣ — - — Αραιός</span>
+<span class="info">9 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-58">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="140330111">VIR BEDSHEET  60X90 EXTRA 4 ΠΑΚ Χ 30 ΤΜΧ</td>
+<td class="right" style="font-weight:600">€184</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">184</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€33</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">33</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€27</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">27</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="18033033">KERA BED ΥΠΟΣΕΝΤΟΝΟ 90x180 15TMX (X6)</td>
+<td class="right" style="font-weight:600">€25</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">25</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
+<td class="right" style="font-weight:600">€14</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">14</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290028">PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 </td>
+<td class="right" style="font-weight:600">€14</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">14</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="0805675290622">PIUMA LADY TALCO &amp; AVENA BABY WIPES 72 TMX - </td>
+<td class="right" style="font-weight:600">€14</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">14</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€10</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">10</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-59')">
+<span>ΜΑΚΡΗΣ  ΑΘΑΝΑΣΙΟΣ ΑΝΑΣΤΑΣΙΟΣ — - — Αραιός</span>
+<span class="info">10 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-59">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="17005133">Kera Lady Maxi Σερβιέτα Ακράτειας 28τμχ Χ 7 π</td>
+<td class="right" style="font-weight:600">€31</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">31</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290028">PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 </td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290523">PIUMA LADY ALOE &amp; CAMOMILLA BABY WIPES 72 TMX</td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290561">PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPE</td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="0805675290622">PIUMA LADY TALCO &amp; AVENA BABY WIPES 72 TMX - </td>
+<td class="right" style="font-weight:600">€29</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">29</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
+<td class="right" style="font-weight:600">€27</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">27</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="16253090">KERA BED ΥΠΟΣΕΝΤΟΝΟ SUPER 60x90 25TMX (X4)</td>
+<td class="right" style="font-weight:600">€19</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">19</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€10</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">10</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
+<div class="cust-hm-header" onclick="toggleHm('hm-60')">
+<span>ΕΛΕΝΗ  ΛΕΥΚΟΘΕΑ ΣΤΑΥΡΟΣ — - — Αραιός</span>
+<span class="info">7 προϊόντα | click to expand</span></div>
+<div class="cust-hm-body collapsed" id="hm-60">
+<table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
+<th style="font-size:.7em;padding:3px">Ι25</th>
+<th style="font-size:.7em;padding:3px">Φ25</th>
+<th style="font-size:.7em;padding:3px">Μ25</th>
+<th style="font-size:.7em;padding:3px">Α25</th>
+<th style="font-size:.7em;padding:3px">Μα25</th>
+<th style="font-size:.7em;padding:3px">Ιν25</th>
+<th style="font-size:.7em;padding:3px">Ιλ25</th>
+<th style="font-size:.7em;padding:3px">Αυ25</th>
+<th style="font-size:.7em;padding:3px">Σ25</th>
+<th style="font-size:.7em;padding:3px">Ο25</th>
+<th style="font-size:.7em;padding:3px">Ν25</th>
+<th style="font-size:.7em;padding:3px">Δ25</th>
+<th style="font-size:.7em;padding:3px">Ι26</th>
+<th style="font-size:.7em;padding:3px">Φ26</th>
+<th style="font-size:.7em;padding:3px">Μ26</th>
+<th>Trend</th></tr></thead><tbody>
+<tr><td class="left" title="08052675290028">PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 </td>
+<td class="right" style="font-weight:600">€57</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290523">PIUMA LADY ALOE &amp; CAMOMILLA BABY WIPES 72 TMX</td>
+<td class="right" style="font-weight:600">€57</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290561">PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPE</td>
+<td class="right" style="font-weight:600">€57</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="0805675290622">PIUMA LADY TALCO &amp; AVENA BABY WIPES 72 TMX - </td>
+<td class="right" style="font-weight:600">€57</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="14033033">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (6</td>
+<td class="right" style="font-weight:600">€28</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">28</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="1805061643063">PET μαντ.για κατοικίδια με ταλκ 36 ΤΜΧ - 18πα</td>
+<td class="right" style="font-weight:600">€13</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">13</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="35102005000">SERENITY CARE WET WIPES 8bags Χ 63pcs</td>
+<td class="right" style="font-weight:600">€10</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">10</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+</tbody></table></div>
 </div></div>
 <div id="tab-matrix" class="tab-content"><div class="section"><h2>Matrix Πελατών × Key Articles</h2>
 <p style="color:#888;font-size:.85em;margin-bottom:12px">Hover πάνω στον κωδικό για περιγραφή προϊόντος | ✓ = αγοράζει, ✗ = λείπει</p>
@@ -14527,7 +16538,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td><span class="mx no" data-tooltip="PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPES 72 TMX - 24 πακ">✗</span></td>
 </tr>
 </tbody></table></div></div></div>
-</div></div><div class="footer">EASYCARE IKE — 17/03/2026 14:39</div>
+</div></div><div class="footer">EASYCARE IKE — 03/04/2026 17:37</div>
 <script>
 const PIN_HASH = "9af15b336e6a9619928537df30b2e6a2376569fcf9d7e773eccede65606529a0";
 document.querySelectorAll('.pin-inputs input').forEach((inp,idx,all)=>{

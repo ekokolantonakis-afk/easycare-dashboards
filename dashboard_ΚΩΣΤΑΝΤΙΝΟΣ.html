@@ -96,22 +96,22 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <div id="login-error"></div><button id="login-btn" onclick="checkPin()">Είσοδος</button></div></div>
 <div id="app">
 <div class="header"><h1>EASYCARE IKE — Commercial Dashboard</h1>
-<div class="sub">Πωλητής: <strong>ΚΩΣΤΑΝΤΙΝΟΣ</strong> | Περίοδος: 01/01/2025 - 15/03/2026 (15 months) | Ανάλυση: 17/03/2026 | 15 μήνες</div></div>
+<div class="sub">Πωλητής: <strong>ΚΩΣΤΑΝΤΙΝΟΣ</strong> | Περίοδος: 01/01/2025 - 15/03/2026 (15 months) | Ανάλυση: 03/04/2026 | 15 μήνες</div></div>
 <div class="container">
 <div class="kpi-row">
 <div class="kpi"><div class="label">Πωλήσεις</div><div class="value blue">€294,742</div></div>
 <div class="kpi"><div class="label">Πελάτες</div><div class="value blue">4</div></div>
 <div class="kpi"><div class="label">Τακτικοί</div><div class="value green">2</div></div>
-<div class="kpi"><div class="label">Σε Κίνδυνο</div><div class="value red">2</div></div>
+<div class="kpi"><div class="label">Σε Κίνδυνο</div><div class="value red">1</div></div>
 <div class="kpi"><div class="label">Μ.Ο. Coverage</div><div class="value blue">25%</div></div>
-<div class="kpi"><div class="label">Δυνητικό €</div><div class="value green">€83,248</div></div>
+<div class="kpi"><div class="label">Δυνητικό €</div><div class="value green">€84,408</div></div>
 </div>
 <div class="tabs">
 <div class="tab active" onclick="showTab('customers')">Πελάτες (4)</div>
-<div class="tab" onclick="showTab('danger')">Κίνδυνος (2)</div>
+<div class="tab" onclick="showTab('danger')">Κίνδυνος (1)</div>
 <div class="tab" onclick="showTab('actions')">Actions (4)</div>
 <div class="tab" onclick="showTab('missing')">Missing (40)</div>
-<div class="tab" onclick="showTab('trends')">Alerts (15) / Growth (7)</div>
+<div class="tab" onclick="showTab('trends')">Alerts (12) / Growth (7)</div>
 <div class="tab" onclick="showTab('heatmap')">Heatmap (4)</div>
 <div class="tab" onclick="showTab('prodhm')">Product Heatmap (4)</div>
 <div class="tab" onclick="showTab('matrix')">Matrix (4)</div>
@@ -121,40 +121,39 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <div class="table-wrap"><table id="cust-table"><thead><tr><th>#</th><th class="left">Επωνυμία</th><th>ΑΦΜ</th><th>Πωλήσεις €</th><th>Προϊόντα</th><th>Key✓</th><th>Key✗</th><th>Coverage</th><th>Τιμολ.</th><th>M.O.Gap</th><th>Τελ.Παρ.</th><th>Ημ.Σιωπ.</th><th>Score</th><th>Τακτικότητα</th></tr></thead><tbody>
 <tr class="bold"><td>1</td><td class="left">FILCORE LTD</td><td></td><td class="right">€199,060</td><td>36</td>
 <td style="color:var(--green)">21</td><td style="color:var(--red)">31</td><td><span class="pill low">40%</span></td>
-<td>36</td><td>15</td><td>2026-03-16</td><td><span class="pill ok">1</span></td><td>81</td><td><span class="pill reg">Τακτικός</span></td>
+<td>37</td><td>15</td><td>2026-03-30</td><td><span class="pill ok">-13</span></td><td>86</td><td><span class="pill reg">Τακτικός</span></td>
 </tr>
 <tr class="bold"><td>2</td><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣΙΑ ΑΝΔΡΕΑΣ</td><td>113729769</td><td class="right">€69,809</td><td>19</td>
 <td style="color:var(--green)">17</td><td style="color:var(--red)">35</td><td><span class="pill low">33%</span></td>
-<td>31</td><td>14</td><td>2026-03-06</td><td><span class="pill ok">11</span></td><td>79</td><td><span class="pill reg">Τακτικός</span></td>
+<td>33</td><td>14</td><td>2026-04-03</td><td><span class="pill ok">-17</span></td><td>92</td><td><span class="pill reg">Τακτικός</span></td>
 </tr>
 <tr><td>3</td><td class="left">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑΙΡΕΙΑ</td><td>800823701</td><td class="right">€23,205</td><td>11</td>
 <td style="color:var(--green)">9</td><td style="color:var(--red)">43</td><td><span class="pill vlow">17%</span></td>
-<td>10</td><td>40</td><td>2026-01-22</td><td><span class="pill warn">54</span></td><td>46</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
+<td>11</td><td>41</td><td>2026-03-18</td><td><span class="pill ok">-1</span></td><td>68</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 <tr><td>4</td><td class="left">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td>035387195</td><td class="right">€2,667</td><td>8</td>
 <td style="color:var(--green)">6</td><td style="color:var(--red)">46</td><td><span class="pill vlow">12%</span></td>
 <td>4</td><td>115</td><td>2026-02-06</td><td><span class="pill warn">39</span></td><td>48</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td>
 </tr>
 </tbody></table></div></div></div>
-<div id="tab-danger" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">🚨 Danger Zone <span class="badge" style="background:var(--red)">2</span></h2>
+<div id="tab-danger" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">🚨 Danger Zone <span class="badge" style="background:var(--red)">1</span></h2>
 <table><thead><tr><th class="left">Πελάτης</th><th>Πωλήσεις</th><th>Ημ.Σιωπής</th><th>AvgGap</th><th>Status</th></tr></thead><tbody>
-<tr><td class="left" style="font-weight:600">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑ</td><td class="right" style="color:var(--red)">€23,205</td><td><span class="pill danger">54</span></td><td>40</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td></tr>
 <tr><td class="left" style="font-weight:600">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="right" style="color:var(--red)">€2,667</td><td><span class="pill danger">39</span></td><td>115</td><td><span class="pill mreg">Μέτρια Τακτικότητα</span></td></tr>
 </tbody></table>
 </div>
 <div class="section"><h2 style="color:var(--green)">🎯 Low Hanging Fruit <span class="badge" style="background:var(--green)">2</span></h2>
 <table><thead><tr><th class="left">Πελάτης</th><th>Πωλ.</th><th>Cov</th><th>Τιμ.</th><th>Score</th></tr></thead><tbody>
-<tr><td class="left" style="font-weight:600">FILCORE LTD</td><td class="right" style="color:var(--green)">€199,060</td><td><span class="pill low">40%</span></td><td>36</td><td>81</td></tr>
-<tr><td class="left" style="font-weight:600">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣΙΑ ΑΝΔΡΕΑΣ</td><td class="right" style="color:var(--green)">€69,809</td><td><span class="pill low">33%</span></td><td>31</td><td>79</td></tr>
+<tr><td class="left" style="font-weight:600">FILCORE LTD</td><td class="right" style="color:var(--green)">€199,060</td><td><span class="pill low">40%</span></td><td>37</td><td>86</td></tr>
+<tr><td class="left" style="font-weight:600">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣΙΑ ΑΝΔΡΕΑΣ</td><td class="right" style="color:var(--green)">€69,809</td><td><span class="pill low">33%</span></td><td>33</td><td>92</td></tr>
 </tbody></table>
 </div></div></div>
 <div id="tab-actions" class="tab-content"><div class="section"><h2>Action Plan <span class="badge">4</span></h2>
 <div class="table-wrap"><table><thead><tr><th>Priority</th><th class="left">Πελάτης</th><th>Πωλ.</th><th class="left">Πρόβλημα</th><th class="left">Ενέργεια</th><th>Δυνητικό€</th></tr></thead><tbody>
 <tr><td><span class="pill prio-ΑΝΑΠΤΥΞΗ">ΑΝΑΠΤΥΞΗ</span></td><td class="left" style="font-weight:600">FILCORE LTD</td><td class="right">€199,060</td><td class="left">Κάλυψη 40%</td><td class="left" style="font-weight:600">Cross-sell 31 key articles</td><td class="right" style="color:var(--green);font-weight:600">€59,718</td></tr>
 <tr><td><span class="pill prio-ΑΝΑΠΤΥΞΗ">ΑΝΑΠΤΥΞΗ</span></td><td class="left" style="font-weight:600">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣΙΑ ΑΝΔΡΕΑΣ</td><td class="right">€69,809</td><td class="left">Κάλυψη 33%</td><td class="left" style="font-weight:600">Cross-sell 35 key articles</td><td class="right" style="color:var(--green);font-weight:600">€20,943</td></tr>
-<tr><td><span class="pill prio-ΑΜΕΣΟ">ΑΜΕΣΟ</span></td><td class="left" style="font-weight:600">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑ</td><td class="right">€23,205</td><td class="left">Σιωπηλός τακτικός</td><td class="left" style="font-weight:600">Call ΤΩΡΑ — 54ημ σιωπή</td><td class="right" style="color:var(--green);font-weight:600">€2,320</td></tr>
+<tr><td><span class="pill prio-ΒΕΛΤΙΩΣΗ">ΒΕΛΤΙΩΣΗ</span></td><td class="left" style="font-weight:600">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑ</td><td class="right">€23,205</td><td class="left">Μέτρια τακτικότητα</td><td class="left" style="font-weight:600">Loyalty — στόχος μηνιαία παραγγελία</td><td class="right" style="color:var(--green);font-weight:600">€3,481</td></tr>
 <tr><td><span class="pill prio-ΑΜΕΣΟ">ΑΜΕΣΟ</span></td><td class="left" style="font-weight:600">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="right">€2,667</td><td class="left">Σιωπηλός τακτικός</td><td class="left" style="font-weight:600">Call ΤΩΡΑ — 39ημ σιωπή</td><td class="right" style="color:var(--green);font-weight:600">€267</td></tr>
-</tbody><tfoot><tr style="background:var(--dark);color:white;font-weight:700"><td colspan="5" style="text-align:right;padding:10px">ΣΥΝΟΛΟ ΔΥΝΗΤΙΚΟ</td><td style="text-align:right;padding:10px">€83,248</td></tr></tfoot></table></div></div></div>
+</tbody><tfoot><tr style="background:var(--dark);color:white;font-weight:700"><td colspan="5" style="text-align:right;padding:10px">ΣΥΝΟΛΟ ΔΥΝΗΤΙΚΟ</td><td style="text-align:right;padding:10px">€84,408</td></tr></tfoot></table></div></div></div>
 <div id="tab-missing" class="tab-content"><div class="section"><h2>Missing Key Articles <span class="badge">40</span></h2>
 <div class="toolbar"><input class="search" type="text" placeholder="Αναζήτηση..." onkeyup="filterTable(this,'miss-table')"></div>
 <div class="table-wrap"><table id="miss-table"><thead><tr><th class="left">Πελάτης</th><th>Πωλ.</th><th class="left">Missing Article</th><th>Κωδικός</th><th>Value</th><th>Αγορ.</th></tr></thead><tbody>
@@ -199,13 +198,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="right">€2,667</td><td class="left">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td><td>16309075</td><td class="right">€43,067</td><td>88</td></tr>
 <tr><td class="left">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="right">€2,667</td><td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) 4X20</td><td>945342650</td><td class="right">€41,197</td><td>15</td></tr>
 </tbody></table></div></div></div>
-<div id="tab-trends" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">📉 Alerts <span class="badge" style="background:var(--red)">15</span></h2>
+<div id="tab-trends" class="tab-content"><div class="two-col"><div class="section"><h2 style="color:var(--red)">📉 Alerts <span class="badge" style="background:var(--red)">12</span></h2>
 <div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>€</th></tr></thead><tbody>
 <tr><td class="left">FILCORE LTD</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td><td><span class="trend-down">ΕΚΛΕΙΨΗ 3Μ</span></td><td class="right">€22,161</td></tr>
-<tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera Slip Premium NIGHT MAXI  XLARG</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€10,001</td></tr>
-<tr><td class="left">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€7,689</td></tr>
-<tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera Slip Premium NIGHT MAXI MEDIUM</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€6,876</td></tr>
-<tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€4,971</td></tr>
+<tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera bed Υποσέντονα  8 πακέτα Χ 15 </td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€5,224</td></tr>
 <tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€3,794</td></tr>
 <tr><td class="left">FILCORE LTD</td><td class="left">Kera Pants Plus L 8πακ Χ 14τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€3,543</td></tr>
 <tr><td class="left">FILCORE LTD</td><td class="left">Kera Slip Premium NIGHT MAXI  LARGE</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€2,114</td></tr>
@@ -214,14 +210,14 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <tr><td class="left">FILCORE LTD</td><td class="left">Kera Pants Plus XL 4πακ Χ 14τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€1,524</td></tr>
 <tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera Pants Plus M 8πακ Χ 14τμχ</td><td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td><td class="right">€1,064</td></tr>
 <tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">KERA Adult Slip Maxi Night L (ΜΩΒ) </td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€962</td></tr>
-<tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€621</td></tr>
+<tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣ</td><td class="left">Kera slip medium 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td><td class="right">€742</td></tr>
 <tr><td class="left">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙ</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td><td><span class="trend-down">ΣΤΑΜΑΤΗΣΕ</span></td><td class="right">€521</td></tr>
 </tbody></table></div></div>
 <div class="section"><h2 style="color:var(--green)">📈 Growth <span class="badge" style="background:var(--green)">7</span></h2>
 <div class="table-wrap" style="max-height:50vh"><table><thead><tr><th class="left">Πελάτης</th><th class="left">Προϊόν</th><th>Trend</th><th>€</th></tr></thead><tbody>
-<tr><td class="left">FILCORE LTD</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td><td class="right">€110,668</td></tr>
+<tr><td class="left">FILCORE LTD</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td><td class="right">€112,464</td></tr>
 <tr><td class="left">FILCORE LTD</td><td class="left">Kera slip X-Large 4 πακ χ 20 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€31,281</td></tr>
-<tr><td class="left">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td><td class="right">€12,061</td></tr>
+<tr><td class="left">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙ</td><td class="left">Kera slip Large 4 πακ χ 20 τμχ</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€14,004</td></tr>
 <tr><td class="left">FILCORE LTD</td><td class="left">SEPTONA BW CNC CHAMOMILE 80 (*18)</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€4,276</td></tr>
 <tr><td class="left">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="left">Kera Slip Premium NIGHT MAXI  XLARG</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€1,088</td></tr>
 <tr><td class="left">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="left">Kera Slip Premium NIGHT MAXI  LARGE</td><td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td><td class="right">€801</td></tr>
@@ -262,7 +258,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">3,131</td>
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">24,898</td>
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">4,194</td>
-<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">22,095</td>
+<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">25,736</td>
 </tr>
 <tr><td class="left">ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣΙΑ ΑΝ</td><td class="right" style="font-weight:600">€69,809</td>
 <td>14/15</td>
@@ -280,10 +276,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">4,366</td>
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">5,805</td>
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">5,305</td>
-<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">3,008</td>
+<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">5,923</td>
 </tr>
 <tr><td class="left">VITAFARM ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚ</td><td class="right" style="font-weight:600">€23,205</td>
-<td>8/15</td>
+<td>9/15</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">2,115</td>
@@ -298,7 +294,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">2,497</td>
 <td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">2,988</td>
 <td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
-<td style="background:#f9f9f9;color:#ddd;font-size:.7em">-</td>
+<td style="background:#006100;color:white;font-size:.75em;font-weight:600;padding:3px">2,547</td>
 </tr>
 <tr><td class="left">ΦΡΑΓΚΟΣ  ΧΡΗΣΤΟΣ ΣΩΤΗΡΙΟΣ</td><td class="right" style="font-weight:600">€2,667</td>
 <td>4/15</td>
@@ -324,7 +320,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <p style="color:#888;font-size:.85em;margin-bottom:16px">Μηνιαίες πωλήσεις (€) ανά προϊόν ανά πελάτη — κλικ για expand/collapse</p>
 <div class="cust-hm-header" onclick="toggleHm('hm-0')">
 <span>FILCORE LTD — €199,060 — Τακτικός</span>
-<span class="info">30 προϊόντα | click to collapse</span></div>
+<span class="info">31 προϊόντα | click to collapse</span></div>
 <div class="cust-hm-body" id="hm-0">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
 <th style="font-size:.7em;padding:3px">Ι25</th>
@@ -344,7 +340,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <th style="font-size:.7em;padding:3px">Μ26</th>
 <th>Trend</th></tr></thead><tbody>
 <tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€110,668</td>
+<td class="right" style="font-weight:600">€112,464</td>
 <td class="hm-val hm-pos">3,592</td>
 <td class="hm-val hm-pos">16,748</td>
 <td class="hm-val hm-zero">-</td>
@@ -359,7 +355,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">17,135</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">13,809</td>
+<td class="hm-val hm-pos">15,605</td>
 <td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td></tr>
 <tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
 <td class="right" style="font-weight:600">€31,281</td>
@@ -433,6 +429,24 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">726</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
+<tr><td class="left" title="13032030">EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€4,117</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">1,312</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">1,079</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">863</td>
+<td class="hm-val hm-pos">863</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
 <td class="right" style="font-weight:600">€3,543</td>
 <td class="hm-val hm-pos">511</td>
@@ -469,24 +483,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="13032030">EASY ADULT PANTS LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
-<td class="right" style="font-weight:600">€3,254</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">1,312</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">1,079</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">863</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="263137200">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ)</td>
 <td class="right" style="font-weight:600">€2,114</td>
 <td class="hm-val hm-pos">387</td>
@@ -505,6 +501,24 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">171</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
+<tr><td class="left" title="13022030">EASY ADULT PANTS MEDIUM 30 TΜΧ Χ 4 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€2,012</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">826</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">198</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">395</td>
+<td class="hm-val hm-pos">593</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="16309075">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
 <td class="right" style="font-weight:600">€1,530</td>
 <td class="hm-val hm-zero">-</td>
@@ -541,24 +555,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">130</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
-<tr><td class="left" title="13022030">EASY ADULT PANTS MEDIUM 30 TΜΧ Χ 4 ΠΑΚ</td>
-<td class="right" style="font-weight:600">€1,419</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">826</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">198</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">395</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="16268000">EASYPET M 60x60cm 30τεμ x 4ΠΑΚ/ΔΕΜΑ</td>
 <td class="right" style="font-weight:600">€1,160</td>
 <td class="hm-val hm-zero">-</td>
@@ -595,6 +591,60 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">502</td>
 <td class="hm-val hm-pos">620</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
+<td class="right" style="font-weight:600">€531</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">78</td>
+<td class="hm-val hm-pos">324</td>
+<td class="hm-val hm-pos">129</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="0805675290622">PIUMA LADY TALCO &amp; AVENA BABY WIPES 72 TMX - </td>
+<td class="right" style="font-weight:600">€531</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">78</td>
+<td class="hm-val hm-pos">324</td>
+<td class="hm-val hm-pos">129</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="08052675290028">PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 </td>
+<td class="right" style="font-weight:600">€479</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">155</td>
+<td class="hm-val hm-pos">194</td>
+<td class="hm-val hm-pos">129</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="13042030">EASY ADULT PANTS X-LARGE 30 TΜΧ Χ 4 ΠΑΚ</td>
 <td class="right" style="font-weight:600">€456</td>
 <td class="hm-val hm-zero">-</td>
@@ -611,60 +661,6 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">228</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">228</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="080526752907699">PIUMA LADY ACQUA 99% BABY WIPES 72 TMX - 24 π</td>
-<td class="right" style="font-weight:600">€401</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">78</td>
-<td class="hm-val hm-pos">324</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="0805675290622">PIUMA LADY TALCO &amp; AVENA BABY WIPES 72 TMX - </td>
-<td class="right" style="font-weight:600">€401</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">78</td>
-<td class="hm-val hm-pos">324</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
-<tr><td class="left" title="08052675290028">PIUMA LADY OLIO ARGAN BABY WIPES 72 TMX - 24 </td>
-<td class="right" style="font-weight:600">€349</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-pos">155</td>
-<td class="hm-val hm-pos">194</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="1805061643063">PET μαντ.για κατοικίδια με ταλκ 36 ΤΜΧ - 18πα</td>
@@ -847,6 +843,24 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">1</td>
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="IDS61441110">ID SENSITIVE PANTS MAXI - XLARGE 10 TMX X 8 Π</td>
+<td class="right" style="font-weight:600">€1</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">1</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="208891">Κera disposable face mask typeII 50ΤΜΧ Χ 12 Π</td>
 <td class="right" style="font-weight:600">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -886,7 +900,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 </tbody></table></div>
 <div class="cust-hm-header" onclick="toggleHm('hm-1')">
 <span>ΖΑΧΟΥ ΜΠΑΡΜΠΑΡΟΥΣΗ ΑΘΑΝΑΣΙΑ ΑΝΔΡΕΑΣ — €69,809 — Τακτικός</span>
-<span class="info">17 προϊόντα | click to collapse</span></div>
+<span class="info">18 προϊόντα | click to collapse</span></div>
 <div class="cust-hm-body" id="hm-1">
 <table><thead><tr><th class="left" style="min-width:250px">Προϊόν</th><th>Σύνολο</th>
 <th style="font-size:.7em;padding:3px">Ι25</th>
@@ -906,7 +920,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <th style="font-size:.7em;padding:3px">Μ26</th>
 <th>Trend</th></tr></thead><tbody>
 <tr><td class="left" title="263137200">Kera Slip Premium NIGHT MAXI  LARGE (ΠΡΑΣΙΝΟ)</td>
-<td class="right" style="font-weight:600">€19,489</td>
+<td class="right" style="font-weight:600">€20,457</td>
 <td class="hm-val hm-pos">2,261</td>
 <td class="hm-val hm-pos">848</td>
 <td class="hm-val hm-pos">707</td>
@@ -921,10 +935,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">949</td>
 <td class="hm-val hm-pos">2,057</td>
 <td class="hm-val hm-pos">1,424</td>
-<td class="hm-val hm-pos">807</td>
+<td class="hm-val hm-pos">1,775</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="263147200">Kera Slip Premium NIGHT MAXI  XLARGE (ΠΡΑΣΙΝΟ</td>
-<td class="right" style="font-weight:600">€10,001</td>
+<td class="right" style="font-weight:600">€10,366</td>
 <td class="hm-val hm-pos">1,289</td>
 <td class="hm-val hm-pos">483</td>
 <td class="hm-val hm-pos">322</td>
@@ -939,10 +953,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">716</td>
 <td class="hm-val hm-pos">716</td>
 <td class="hm-val hm-pos">716</td>
-<td class="hm-val hm-pos">365</td>
-<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
+<td class="hm-val hm-pos">730</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€7,551</td>
+<td class="right" style="font-weight:600">€7,810</td>
 <td class="hm-val hm-pos">731</td>
 <td class="hm-val hm-pos">487</td>
 <td class="hm-val hm-pos">244</td>
@@ -957,10 +971,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">635</td>
 <td class="hm-val hm-pos">508</td>
 <td class="hm-val hm-pos">762</td>
-<td class="hm-val hm-pos">311</td>
+<td class="hm-val hm-pos">570</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="263127200">Kera Slip Premium NIGHT MAXI MEDIUM (ΠΡΑΣΙΝΟ)</td>
-<td class="right" style="font-weight:600">€6,876</td>
+<td class="right" style="font-weight:600">€7,163</td>
 <td class="hm-val hm-pos">859</td>
 <td class="hm-val hm-pos">270</td>
 <td class="hm-val hm-pos">368</td>
@@ -975,10 +989,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">281</td>
 <td class="hm-val hm-pos">563</td>
 <td class="hm-val hm-pos">563</td>
-<td class="hm-val hm-pos">287</td>
-<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
+<td class="hm-val hm-pos">574</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="16309075">KERA BED ΥΠΟΣΕΝΤΟΝΟ XL 75x90 30TMX (X4)</td>
-<td class="right" style="font-weight:600">€6,469</td>
+<td class="right" style="font-weight:600">€6,919</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
@@ -993,10 +1007,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">536</td>
 <td class="hm-val hm-pos">568</td>
 <td class="hm-val hm-pos">1,104</td>
-<td class="hm-val hm-pos">161</td>
+<td class="hm-val hm-pos">611</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="14033033">Kera bed Υποσέντονα  8 πακέτα Χ 15 τεμάχια (6</td>
-<td class="right" style="font-weight:600">€4,971</td>
+<td class="right" style="font-weight:600">€5,224</td>
 <td class="hm-val hm-pos">575</td>
 <td class="hm-val hm-pos">368</td>
 <td class="hm-val hm-pos">276</td>
@@ -1011,7 +1025,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">323</td>
 <td class="hm-val hm-pos">447</td>
 <td class="hm-val hm-pos">273</td>
-<td class="hm-val hm-pos">127</td>
+<td class="hm-val hm-pos">380</td>
 <td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
 <tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
 <td class="right" style="font-weight:600">€3,794</td>
@@ -1050,7 +1064,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="211565620">Kera slip X-Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€2,111</td>
+<td class="right" style="font-weight:600">€2,265</td>
 <td class="hm-val hm-pos">259</td>
 <td class="hm-val hm-pos">129</td>
 <td class="hm-val hm-pos">129</td>
@@ -1065,7 +1079,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">302</td>
 <td class="hm-val hm-pos">151</td>
 <td class="hm-val hm-pos">151</td>
-<td class="hm-val hm-pos">185</td>
+<td class="hm-val hm-pos">339</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="16292130">Kera bed Υποσέντονα  60x90  MAXI (Green) 5 πα</td>
 <td class="right" style="font-weight:600">€1,897</td>
@@ -1140,7 +1154,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td></tr>
 <tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€621</td>
+<td class="right" style="font-weight:600">€742</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">108</td>
 <td class="hm-val hm-zero">-</td>
@@ -1155,7 +1169,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">121</td>
 <td><span class="trend-down">ΠΤΩΣΗ &gt;50%</span></td></tr>
 <tr><td class="left" title="LSFE3181">Suprem MEN super 21 TMX X 7 ΠΑΚ</td>
 <td class="right" style="font-weight:600">€407</td>
@@ -1192,6 +1206,24 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">209</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
+<tr><td class="left" title="5310265210">ΙD FORM Extra 21 TMX x 8 ΠΑΚ</td>
+<td class="right" style="font-weight:600">€57</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-zero">-</td>
+<td class="hm-val hm-pos">57</td>
 <td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="9188888">KERA SOFT XL 40TEM x24ΠΑΚ</td>
 <td class="right" style="font-weight:600">€5</td>
@@ -1234,7 +1266,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <th style="font-size:.7em;padding:3px">Μ26</th>
 <th>Trend</th></tr></thead><tbody>
 <tr><td class="left" title="211564620">Kera slip Large 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€12,061</td>
+<td class="right" style="font-weight:600">€14,004</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">1,016</td>
@@ -1249,10 +1281,10 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">1,904</td>
 <td class="hm-val hm-pos">2,158</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-up">ΑΝΟΔΟΣ 25-50%</span></td></tr>
+<td class="hm-val hm-pos">1,943</td>
+<td><span class="trend-up">ΑΝΟΔΟΣ &gt;50%</span></td></tr>
 <tr><td class="left" title="211563620">Kera slip medium 4 πακ χ 20 τμχ</td>
-<td class="right" style="font-weight:600">€7,689</td>
+<td class="right" style="font-weight:600">€8,293</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-zero">-</td>
 <td class="hm-val hm-pos">949</td>
@@ -1267,8 +1299,8 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td class="hm-val hm-pos">593</td>
 <td class="hm-val hm-pos">830</td>
 <td class="hm-val hm-zero">-</td>
-<td class="hm-val hm-zero">-</td>
-<td><span class="trend-slight-down">ΠΤΩΣΗ 25-50%</span></td></tr>
+<td class="hm-val hm-pos">605</td>
+<td><span class="trend-stable">ΣΤΑΘΕΡΟ</span></td></tr>
 <tr><td class="left" title="930342161">Kera Pants Plus L 8πακ Χ 14τμχ</td>
 <td class="right" style="font-weight:600">€1,584</td>
 <td class="hm-val hm-zero">-</td>
@@ -1836,7 +1868,7 @@ tr:hover{background:#f8f9ff} tr.bold td{font-weight:600}
 <td><span class="mx no" data-tooltip="PIUMA LADY ALOE &amp; VITAMIN E LOTO -  BABY WIPES 72 TMX - 24 πακ">✗</span></td>
 </tr>
 </tbody></table></div></div></div>
-</div></div><div class="footer">EASYCARE IKE — 17/03/2026 14:39</div>
+</div></div><div class="footer">EASYCARE IKE — 03/04/2026 17:37</div>
 <script>
 const PIN_HASH = "ba0c479ffa282f58dbaacd1e4bcb0a3d39f6e509b95ea4bedbd69fcba1e63fbe";
 document.querySelectorAll('.pin-inputs input').forEach((inp,idx,all)=>{
