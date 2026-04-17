@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="el"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EASYCARE — ΜΠΟΥΚΑΣ ΕΥΑΓΓΕΛΟΣ — Warzone Receivables</title>
+<style>
+:root { --dark:#1B2A4A; --blue:#1F4E79; --blue2:#2E75B6; --accent:#D6E4F0;
+  --green:#006100; --green-bg:#C6EFCE; --yellow-bg:#FFEB9C; --orange-bg:#FCD5B4;
+  --red:#9C0006; --red-bg:#FFC7CE; --grey-bg:#F5F5F5; --purple-bg:#E4CCFF; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#333}
+#login-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#1B2A4A,#9C0006);display:flex;align-items:center;justify-content:center;z-index:9999}
+#login-box{background:white;border-radius:20px;padding:50px 40px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);max-width:380px;width:90%}
+#login-box h2{color:var(--dark);margin-bottom:6px;font-size:1.4em}
+#login-box .sp-name{color:var(--red);font-size:1.1em;margin-bottom:24px;font-weight:700}
+.pin-inputs{display:flex;gap:12px;justify-content:center;margin:20px 0}
+.pin-inputs input{width:52px;height:60px;text-align:center;font-size:1.8em;font-weight:700;border:2px solid #ddd;border-radius:12px;outline:none}
+.pin-inputs input:focus{border-color:var(--red)}
+.pin-inputs input.error{border-color:var(--red);background:var(--red-bg)}
+#login-error{color:var(--red);font-size:.9em;min-height:24px;margin-top:8px}
+#login-btn{background:var(--red);color:white;border:none;padding:12px 40px;border-radius:10px;font-size:1em;font-weight:600;cursor:pointer;margin-top:12px}
+#login-btn:hover{background:var(--dark)}
+#app{display:none}
+.header{background:linear-gradient(135deg,var(--dark),var(--red));color:white;padding:24px 30px}
+.header h1{font-size:1.7em;margin-bottom:4px}
+.header .sub{opacity:.9;font-size:.95em}
+.container{max-width:1500px;margin:0 auto;padding:20px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
+.kpi{background:white;border-radius:12px;padding:22px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.kpi .label{font-size:.75em;color:#888;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.kpi .value{font-size:2.2em;font-weight:700;margin-top:6px}
+.kpi .value.red{color:var(--red)} .kpi .value.yellow{color:#856404}
+.kpi .value.blue{color:var(--blue)} .kpi .value.green{color:var(--green)}
+.section{background:white;border-radius:12px;padding:24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.section h2{font-size:1.25em;color:var(--dark);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px}
+.section h2 .badge{font-size:.65em;background:var(--red);color:white;padding:3px 10px;border-radius:12px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+.cal-day-hdr{background:var(--dark);color:white;padding:6px;text-align:center;font-size:.75em;font-weight:600;border-radius:4px}
+.cal-day{background:white;border:1px solid #e0e0e0;border-radius:8px;padding:10px 8px;min-height:100px;position:relative;cursor:pointer;transition:all .2s}
+.cal-day:hover{border-color:var(--blue);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.cal-day.today{border:2px solid var(--red);background:#fff5f5}
+.cal-day.past{background:#fafafa;opacity:.6}
+.cal-day .dt{font-size:.85em;font-weight:700;color:#555}
+.cal-day .dt-small{font-size:.7em;color:#999}
+.cal-day .amt{font-size:1em;font-weight:700;margin-top:6px}
+.cal-day .amt.red{color:var(--red)}
+.cal-day .amt.orange{color:#984c0c}
+.cal-day .amt.green{color:var(--green)}
+.cal-day .count{font-size:.7em;color:#888;margin-top:2px}
+.cal-day .items{font-size:.65em;margin-top:6px;color:#666;max-height:60px;overflow:hidden}
+.cal-day .items div{padding:1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table{width:100%;border-collapse:collapse;font-size:.88em}
+th{background:var(--blue);color:white;padding:10px 8px;text-align:center;font-weight:600;position:sticky;top:0;z-index:1}
+th.left{text-align:left}
+td{padding:10px 8px;border-bottom:1px solid #e8e8e8;text-align:center}
+td.left{text-align:left} td.right{text-align:right}
+tr:hover{background:#f8f9ff}
+.pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.8em;font-weight:600}
+.pill.danger{background:var(--red-bg);color:var(--red);font-weight:700}
+.pill.warn{background:var(--orange-bg);color:#984c0c}
+.pill.caution{background:var(--yellow-bg);color:#856404}
+.pill.ok{background:var(--green-bg);color:var(--green)}
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--accent);flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:12px 24px;cursor:pointer;font-weight:600;color:#666;border-bottom:3px solid transparent;font-size:.95em}
+.tab:hover{color:var(--red)} .tab.active{color:var(--red);border-bottom-color:var(--red)}
+.tab-content{display:none} .tab-content.active{display:block}
+.customer-card{background:white;border:1px solid #e0e0e0;border-radius:10px;padding:16px;margin:12px 0;transition:all .2s}
+.customer-card.overdue{border-left:4px solid var(--red)}
+.customer-card.warning{border-left:4px solid #ff9f43}
+.customer-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.customer-card .cname{font-size:1.1em;font-weight:700;color:var(--dark);margin-bottom:4px}
+.customer-card .cmeta{display:flex;gap:16px;font-size:.85em;color:#666;flex-wrap:wrap}
+.customer-card .cmeta .m{display:flex;gap:6px;align-items:center}
+.customer-card .inv-mini{margin-top:10px;padding:8px;background:#f8f9fa;border-radius:6px;font-size:.82em;font-family:monospace}
+.inv-mini div{padding:3px 0;display:flex;justify-content:space-between;gap:10px}
+.actions{display:flex;gap:8px;margin-top:10px}
+.btn{padding:6px 14px;border-radius:6px;font-size:.8em;font-weight:600;border:none;cursor:pointer;text-decoration:none;color:white}
+.btn-red{background:var(--red)}.btn-red:hover{background:#7a0005}
+.btn-blue{background:var(--blue)}.btn-blue:hover{background:var(--dark)}
+.btn-orange{background:#ff9f43}.btn-orange:hover{background:#e8892e}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.85em}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-dot{width:12px;height:12px;border-radius:50%}
+</style></head>
+<body>
+
+<div id="login-screen">
+<div id="login-box">
+<h2>🔒 ΕΛΕΓΧΟΣ ΠΡΟΣΒΑΣΗΣ</h2>
+<div class="sp-name">👤 ΜΠΟΥΚΑΣ ΕΥΑΓΓΕΛΟΣ</div>
+<p style="color:#888;font-size:.9em;margin-bottom:12px">ΕΙΣΑΓΕΤΕ PIN 4 ΨΗΦΙΩΝ</p>
+<div class="pin-inputs">
+<input type="password" maxlength="1" id="p1" autocomplete="off">
+<input type="password" maxlength="1" id="p2" autocomplete="off">
+<input type="password" maxlength="1" id="p3" autocomplete="off">
+<input type="password" maxlength="1" id="p4" autocomplete="off">
+</div>
+<div id="login-error"></div>
+<button id="login-btn" onclick="checkPin()">Είσοδος</button>
+</div>
+</div>
+
+<div id="app">
+<div class="header">
+<h1>⚔️ WARZONE RECEIVABLES — ΜΠΟΥΚΑΣ ΕΥΑΓΓΕΛΟΣ</h1>
+<div class="sub">Κατάσταση Απαιτήσεων & Ημερολόγιο Πληρωμών 30 Ημερών · Ενημερώθηκε 17.04.2026 14:53</div>
+</div>
+
+<div class="container">
+<div class="kpi-row">
+<div class="kpi"><div class="label">🔴 ΕΚΠΡΟΘΕΣΜΑ</div><div class="value red">€15,327</div><div style="font-size:.8em;color:#888;margin-top:4px">37 πελάτες</div></div>
+<div class="kpi"><div class="label">🟡 ΠΡΟΕΙΔΟΠΟΙΗΣΗ</div><div class="value yellow">€0</div><div style="font-size:.8em;color:#888;margin-top:4px">5 πελάτες</div></div>
+<div class="kpi"><div class="label">💰 ΣΥΝΟΛΙΚΟ ΥΠΟΛΟΙΠΟ</div><div class="value blue">€27,934</div></div>
+<div class="kpi"><div class="label">👥 ΕΝΕΡΓΟΙ ΠΕΛΑΤΕΣ</div><div class="value">42</div></div>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showTab(this, 'calendar')">📅 Ημερολόγιο 30 Ημερών</div>
+<div class="tab" onclick="showTab(this, 'overdue')">🔴 Εκπρόθεσμα (37)</div>
+<div class="tab" onclick="showTab(this, 'warning')">🟡 Προειδοποίηση (5)</div>
+</div>
+
+<div id="calendar" class="tab-content active">
+<div class="section">
+<h2>📅 Ημερολόγιο Πληρωμών — Επόμενες 30 Ημέρες</h2>
+<div class="legend">
+<div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Εκπρόθεσμα (σήμερα)</div>
+<div class="legend-item"><div class="legend-dot" style="background:#ff9f43"></div>Λήγει σύντομα (0-7 ημ.)</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Λήγει αργότερα (8-30 ημ.)</div>
+</div>
+<div class="cal-grid" style="margin-top:16px">
+<div class="cal-day-hdr">ΔΕΥ</div>
+<div class="cal-day-hdr">ΤΡΙ</div>
+<div class="cal-day-hdr">ΤΕΤ</div>
+<div class="cal-day-hdr">ΠΕΜ</div>
+<div class="cal-day-hdr">ΠΑΡ</div>
+<div class="cal-day-hdr">ΣΑΒ</div>
+<div class="cal-day-hdr">ΚΥΡ</div>
+<div class="cal-day past"></div>
+<div class="cal-day past"></div>
+<div class="cal-day past"></div>
+<div class="cal-day past"></div>
+<div class="cal-day today"><div class="dt">17/4</div><div class="dt-small">Παρ</div><div class="amt red">€15,326</div><div class="count">⚠️ ΕΚΠΡΟΘ.</div><div class="items"><div title="ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑΣ — 2901 - ΤΙΜΤ - 006767 (μερικώς) — €36.34">• ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑ €36</div><div title="ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑΣ — 2901 - ΤΙΜΤ - 006846 — €242.92">• ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑ €243</div><div title="ΚΑΛΟΥΜΕΝΟΣ  ΜΑΡΚΟΣ ΠΕΤΡΟΣ — 2901 - ΤΙΜΤ - 006799 (μερικώς) — €229.54">• ΚΑΛΟΥΜΕΝΟΣ  ΜΑΡΚΟΣ €230</div><div title="ΚΟΨΙΔΑ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ — 2901 - ΤΙΜΤ - 006833 (μερικώς) — €650.60">• ΚΟΨΙΔΑ  ΠΑΝΑΓΙΩΤΑ  €651</div></div></div>
+<div class="cal-day"><div class="dt">18/4</div><div class="dt-small">Σαβ</div></div>
+<div class="cal-day"><div class="dt">19/4</div><div class="dt-small">Κυρ</div></div>
+<div class="cal-day"><div class="dt">20/4</div><div class="dt-small">Δευ</div></div>
+<div class="cal-day"><div class="dt">21/4</div><div class="dt-small">Τρι</div></div>
+<div class="cal-day"><div class="dt">22/4</div><div class="dt-small">Τετ</div></div>
+<div class="cal-day"><div class="dt">23/4</div><div class="dt-small">Πεμ</div></div>
+<div class="cal-day"><div class="dt">24/4</div><div class="dt-small">Παρ</div></div>
+<div class="cal-day"><div class="dt">25/4</div><div class="dt-small">Σαβ</div></div>
+<div class="cal-day"><div class="dt">26/4</div><div class="dt-small">Κυρ</div></div>
+<div class="cal-day"><div class="dt">27/4</div><div class="dt-small">Δευ</div></div>
+<div class="cal-day"><div class="dt">28/4</div><div class="dt-small">Τρι</div></div>
+<div class="cal-day"><div class="dt">29/4</div><div class="dt-small">Τετ</div></div>
+<div class="cal-day"><div class="dt">30/4</div><div class="dt-small">Πεμ</div></div>
+<div class="cal-day"><div class="dt">1/5</div><div class="dt-small">Παρ</div></div>
+<div class="cal-day"><div class="dt">2/5</div><div class="dt-small">Σαβ</div></div>
+<div class="cal-day"><div class="dt">3/5</div><div class="dt-small">Κυρ</div></div>
+<div class="cal-day"><div class="dt">4/5</div><div class="dt-small">Δευ</div></div>
+<div class="cal-day"><div class="dt">5/5</div><div class="dt-small">Τρι</div></div>
+<div class="cal-day"><div class="dt">6/5</div><div class="dt-small">Τετ</div></div>
+<div class="cal-day"><div class="dt">7/5</div><div class="dt-small">Πεμ</div></div>
+<div class="cal-day"><div class="dt">8/5</div><div class="dt-small">Παρ</div></div>
+<div class="cal-day"><div class="dt">9/5</div><div class="dt-small">Σαβ</div></div>
+<div class="cal-day"><div class="dt">10/5</div><div class="dt-small">Κυρ</div></div>
+<div class="cal-day"><div class="dt">11/5</div><div class="dt-small">Δευ</div></div>
+<div class="cal-day"><div class="dt">12/5</div><div class="dt-small">Τρι</div></div>
+<div class="cal-day"><div class="dt">13/5</div><div class="dt-small">Τετ</div></div>
+<div class="cal-day"><div class="dt">14/5</div><div class="dt-small">Πεμ</div></div>
+<div class="cal-day"><div class="dt">15/5</div><div class="dt-small">Παρ</div></div>
+<div class="cal-day"><div class="dt">16/5</div><div class="dt-small">Σαβ</div></div>
+</div></div></div>
+<div id="overdue" class="tab-content">
+<div class="section">
+<h2>🔴 Εκπρόθεσμα — Άμεσες Ενέργειες Είσπραξης</h2>
+<div class="customer-card overdue"><div class="cname">ΓΕΩΡΓΑΝΤΑΣ ΔΗΜ. ΠΑΝΑΓΙΩΤΗΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€1,696.32</b></div><div class="m">📊 Υπόλοιπο: <b>€1,696.32</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006654 (μερικώς)</span><span>Λήξη 01/03/2026</span><span><b>€1,696.32</b></span><span style="color:var(--red)">47 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΓΕΩΡΓΑΝΤΑΣ ΔΗΜ. ΠΑΝΑΓΙΩΤΗΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΓΕΩΡΓΑΝΤΑΣ ΔΗΜ. ΠΑΝΑΓΙΩΤΗΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΒΟΥΡΔΑΜΗΣ  ΕΥΑΓΓΕΛΟΣ ΓΕΩΡΓΙΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€1,500.00</b></div><div class="m">📊 Υπόλοιπο: <b>€1,500.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006821 (μερικώς)</span><span>Λήξη 04/04/2026</span><span><b>€1,500.00</b></span><span style="color:var(--red)">13 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΒΟΥΡΔΑΜΗΣ  ΕΥΑΓΓΕΛΟΣ ΓΕΩΡΓΙΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΒΟΥΡΔΑΜΗΣ  ΕΥΑΓΓΕΛΟΣ ΓΕΩΡΓΙΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΩΣΤΑΚΗΣ  ΧΑΡΑΛΑΜΠΟΣ Λ.</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€1,079.20</b></div><div class="m">📊 Υπόλοιπο: <b>€1,079.20</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>OPENING_BALANCE</span><span>Λήξη 01/01/2026</span><span><b>€247.67</b></span><span style="color:var(--red)">106 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006868</span><span>Λήξη 12/04/2026</span><span><b>€831.53</b></span><span style="color:var(--red)">5 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΩΣΤΑΚΗΣ  ΧΑΡΑΛΑΜΠΟΣ Λ._OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΩΣΤΑΚΗΣ  ΧΑΡΑΛΑΜΠΟΣ Λ.')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΕΛΛΗΝΙΚΗ ΔΙΑΤΡΟΦΗ ΔΥΤΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΑΝΩΝΥΜΗ ΠΑΡΑΓΩΓΙΚΗ ΕΜΠΟΡΙΚΗ ΚΑΙ ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΩΝ ΕΤΑΙΡΙΑ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€1,069.15</b></div><div class="m">📊 Υπόλοιπο: <b>€1,069.15</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006872</span><span>Λήξη 12/04/2026</span><span><b>€1,069.15</b></span><span style="color:var(--red)">5 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΕΛΛΗΝΙΚΗ ΔΙΑΤΡΟΦΗ ΔΥΤΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΑΝΩΝΥΜΗ ΠΑΡΑΓΩΓΙΚΗ ΕΜΠΟΡΙΚΗ ΚΑΙ ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΩΝ ΕΤΑΙΡΙΑ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΕΛΛΗΝΙΚΗ ΔΙΑΤΡΟΦΗ ΔΥΤΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΑΝΩΝΥΜΗ ΠΑΡΑΓΩΓΙΚΗ ΕΜΠΟΡΙΚΗ ΚΑΙ ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΩΝ ΕΤΑΙΡΙΑ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΜΑΡΓΕΛΗΣ  ΕΥΑΓΓ ΚΩΝΣΤΑΝΤΙΝΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€796.15</b></div><div class="m">📊 Υπόλοιπο: <b>€796.15</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006623 (μερικώς)</span><span>Λήξη 22/02/2026</span><span><b>€0.00</b></span><span style="color:var(--red)">54 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006871</span><span>Λήξη 12/04/2026</span><span><b>€796.15</b></span><span style="color:var(--red)">5 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΜΑΡΓΕΛΗΣ  ΕΥΑΓΓ ΚΩΝΣΤΑΝΤΙΝΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΜΑΡΓΕΛΗΣ  ΕΥΑΓΓ ΚΩΝΣΤΑΝΤΙΝΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΩΣΤΑΡΑΚΟΣ  ΙΩΑΝΝΗΣ ΠΟΥΛΙΚΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€715.29</b></div><div class="m">📊 Υπόλοιπο: <b>€715.29</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006740 (μερικώς)</span><span>Λήξη 20/03/2026</span><span><b>€0.00</b></span><span style="color:var(--red)">28 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006807</span><span>Λήξη 03/04/2026</span><span><b>€715.29</b></span><span style="color:var(--red)">14 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΩΣΤΑΡΑΚΟΣ  ΙΩΑΝΝΗΣ ΠΟΥΛΙΚΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΩΣΤΑΡΑΚΟΣ  ΙΩΑΝΝΗΣ ΠΟΥΛΙΚΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΠΟΛΙΤΗΣ ΔΗΜΗΤΡΙΟΣ - SCONTO ITALIANO CENTRO</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€660.02</b></div><div class="m">📊 Υπόλοιπο: <b>€660.02</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006610</span><span>Λήξη 20/02/2026</span><span><b>€660.02</b></span><span style="color:var(--red)">56 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΠΟΛΙΤΗΣ ΔΗΜΗΤΡΙΟΣ - SCONTO ITALIANO CENTRO_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΠΟΛΙΤΗΣ ΔΗΜΗΤΡΙΟΣ - SCONTO ITALIANO CENTRO')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΟΨΙΔΑ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€650.60</b></div><div class="m">📊 Υπόλοιπο: <b>€2,111.57</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006833 (μερικώς)</span><span>Λήξη 08/04/2026</span><span><b>€650.60</b></span><span style="color:var(--red)">9 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΟΨΙΔΑ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΟΨΙΔΑ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΜΑΡΣΩΝΗΣ  ΑΝΔΡΕΑΣ ΜΙΧΑΗΛ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€633.95</b></div><div class="m">📊 Υπόλοιπο: <b>€1,224.18</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006876 (μερικώς)</span><span>Λήξη 15/04/2026</span><span><b>€633.95</b></span><span style="color:var(--red)">2 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΜΑΡΣΩΝΗΣ  ΑΝΔΡΕΑΣ ΜΙΧΑΗΛ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΜΑΡΣΩΝΗΣ  ΑΝΔΡΕΑΣ ΜΙΧΑΗΛ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΓΚΛΙΑΤΗ  ΣΤΑΜΑΤΙΝΑ ΣΠΥΡΙΔΩΝ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€511.41</b></div><div class="m">📊 Υπόλοιπο: <b>€2,323.42</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006695 (μερικώς)</span><span>Λήξη 08/03/2026</span><span><b>€511.41</b></span><span style="color:var(--red)">40 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΓΚΛΙΑΤΗ  ΣΤΑΜΑΤΙΝΑ ΣΠΥΡΙΔΩΝ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΓΚΛΙΑΤΗ  ΣΤΑΜΑΤΙΝΑ ΣΠΥΡΙΔΩΝ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΥΡΑΙΛΙΔΟΥ  ΣΟΦΙΑ ΝΙΚΟΛΑΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€500.00</b></div><div class="m">📊 Υπόλοιπο: <b>€500.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006829 (μερικώς)</span><span>Λήξη 05/04/2026</span><span><b>€500.00</b></span><span style="color:var(--red)">12 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΥΡΑΙΛΙΔΟΥ  ΣΟΦΙΑ ΝΙΚΟΛΑΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΥΡΑΙΛΙΔΟΥ  ΣΟΦΙΑ ΝΙΚΟΛΑΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΠΑΠΑΔΗΜΗΤΡΙΟΥ Β. ΑΠΟΣΤΟΛΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€498.04</b></div><div class="m">📊 Υπόλοιπο: <b>€498.04</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006877</span><span>Λήξη 15/04/2026</span><span><b>€498.04</b></span><span style="color:var(--red)">2 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΠΑΠΑΔΗΜΗΤΡΙΟΥ Β. ΑΠΟΣΤΟΛΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΠΑΠΑΔΗΜΗΤΡΙΟΥ Β. ΑΠΟΣΤΟΛΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΑΛΕΞΑΝΔΡΟΣ ΤΖΗΜΑΣ Ε Ε</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€477.44</b></div><div class="m">📊 Υπόλοιπο: <b>€477.45</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006793</span><span>Λήξη 01/04/2026</span><span><b>€477.44</b></span><span style="color:var(--red)">16 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΑΛΕΞΑΝΔΡΟΣ ΤΖΗΜΑΣ Ε Ε_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΑΛΕΞΑΝΔΡΟΣ ΤΖΗΜΑΣ Ε Ε')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΛΟΥΡΟΣ  ΙΩΑΝΝΗΣ ΔΗΜΗΤΡΙΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€475.76</b></div><div class="m">📊 Υπόλοιπο: <b>€475.76</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>OPENING_BALANCE</span><span>Λήξη 01/01/2026</span><span><b>€0.97</b></span><span style="color:var(--red)">106 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006785</span><span>Λήξη 29/03/2026</span><span><b>€474.79</b></span><span style="color:var(--red)">19 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΛΟΥΡΟΣ  ΙΩΑΝΝΗΣ ΔΗΜΗΤΡΙΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΛΟΥΡΟΣ  ΙΩΑΝΝΗΣ ΔΗΜΗΤΡΙΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΑΡΑΓΙΩΡΓΟΥ ΕΛΕΝΗ </div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€388.04</b></div><div class="m">📊 Υπόλοιπο: <b>€388.04</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006652 (μερικώς)</span><span>Λήξη 28/02/2026</span><span><b>€0.00</b></span><span style="color:var(--red)">48 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006826</span><span>Λήξη 05/04/2026</span><span><b>€388.04</b></span><span style="color:var(--red)">12 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΑΡΑΓΙΩΡΓΟΥ ΕΛΕΝΗ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΑΡΑΓΙΩΡΓΟΥ ΕΛΕΝΗ ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΝΙΚΟΛΟΠΟΥΛΟΥ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€380.68</b></div><div class="m">📊 Υπόλοιπο: <b>€380.68</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006844</span><span>Λήξη 09/04/2026</span><span><b>€380.68</b></span><span style="color:var(--red)">8 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΝΙΚΟΛΟΠΟΥΛΟΥ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΝΙΚΟΛΟΠΟΥΛΟΥ  ΠΑΝΑΓΙΩΤΑ ΚΩΝΣΤΑΝΤΙΝΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΖΑΠΑΝΤΙΩΤΗΣ  ΔΗΜΗΤΡΙΟΣ ΛΕΩΝΙΔΑΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€369.17</b></div><div class="m">📊 Υπόλοιπο: <b>€369.17</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006688 (μερικώς)</span><span>Λήξη 07/03/2026</span><span><b>€369.17</b></span><span style="color:var(--red)">41 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΖΑΠΑΝΤΙΩΤΗΣ  ΔΗΜΗΤΡΙΟΣ ΛΕΩΝΙΔΑΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΖΑΠΑΝΤΙΩΤΗΣ  ΔΗΜΗΤΡΙΟΣ ΛΕΩΝΙΔΑΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΩΝΣΤΑΝΤΙΝΟΣ ΧΑΤΖΗΝΙΚΟΛΑΟΥ ΚΑΙ ΣΙΑ ΟΕ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€348.78</b></div><div class="m">📊 Υπόλοιπο: <b>€662.86</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006644 (μερικώς)</span><span>Λήξη 27/02/2026</span><span><b>€181.66</b></span><span style="color:var(--red)">49 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006739</span><span>Λήξη 20/03/2026</span><span><b>€167.12</b></span><span style="color:var(--red)">28 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΩΝΣΤΑΝΤΙΝΟΣ ΧΑΤΖΗΝΙΚΟΛΑΟΥ ΚΑΙ ΣΙΑ ΟΕ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΩΝΣΤΑΝΤΙΝΟΣ ΧΑΤΖΗΝΙΚΟΛΑΟΥ ΚΑΙ ΣΙΑ ΟΕ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΟΥΓΙΑΣ  Α.Ε</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€305.79</b></div><div class="m">📊 Υπόλοιπο: <b>€305.79</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006761 (μερικώς)</span><span>Λήξη 26/03/2026</span><span><b>€305.79</b></span><span style="color:var(--red)">22 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΟΥΓΙΑΣ  Α.Ε_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΟΥΓΙΑΣ  Α.Ε')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€279.26</b></div><div class="m">📊 Υπόλοιπο: <b>€826.01</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006767 (μερικώς)</span><span>Λήξη 27/03/2026</span><span><b>€36.34</b></span><span style="color:var(--red)">21 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006846</span><span>Λήξη 09/04/2026</span><span><b>€242.92</b></span><span style="color:var(--red)">8 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΡΗΓΑ  ΣΟΦΙΑ ΑΝΔΡΕΑΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΑΤΣΙΦΑΣ  ΑΝΤΩΝΗΣ ΔΗΜΗΤΡΗΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€251.09</b></div><div class="m">📊 Υπόλοιπο: <b>€251.09</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006756 (μερικώς)</span><span>Λήξη 26/03/2026</span><span><b>€251.09</b></span><span style="color:var(--red)">22 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΑΤΣΙΦΑΣ  ΑΝΤΩΝΗΣ ΔΗΜΗΤΡΗΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΑΤΣΙΦΑΣ  ΑΝΤΩΝΗΣ ΔΗΜΗΤΡΗΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΛΗΡΟΝΟΜΟΙ ΒΟΥΡΒΟΥΡΙΩΤΗ ΜΑΡΙΑΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€234.65</b></div><div class="m">📊 Υπόλοιπο: <b>€552.46</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006693</span><span>Λήξη 08/03/2026</span><span><b>€234.65</b></span><span style="color:var(--red)">40 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΛΗΡΟΝΟΜΟΙ ΒΟΥΡΒΟΥΡΙΩΤΗ ΜΑΡΙΑΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΛΗΡΟΝΟΜΟΙ ΒΟΥΡΒΟΥΡΙΩΤΗ ΜΑΡΙΑΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΑΛΟΥΜΕΝΟΣ  ΜΑΡΚΟΣ ΠΕΤΡΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€229.54</b></div><div class="m">📊 Υπόλοιπο: <b>€488.13</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006799 (μερικώς)</span><span>Λήξη 02/04/2026</span><span><b>€229.54</b></span><span style="color:var(--red)">15 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΑΛΟΥΜΕΝΟΣ  ΜΑΡΚΟΣ ΠΕΤΡΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΑΛΟΥΜΕΝΟΣ  ΜΑΡΚΟΣ ΠΕΤΡΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΑΡΑΤΑΡΗΣ  ΒΑΣΙΛΕΙΟΣ ΕΜΜΑΝΟΥΗΛ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€228.83</b></div><div class="m">📊 Υπόλοιπο: <b>€228.83</b></div><div class="m">📄 2 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006630 (μερικώς)</span><span>Λήξη 25/02/2026</span><span><b>€3.51</b></span><span style="color:var(--red)">51 ημέρες</span></div><div><span>2901 - ΤΙΜΤ - 006864</span><span>Λήξη 11/04/2026</span><span><b>€225.32</b></span><span style="color:var(--red)">6 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΑΡΑΤΑΡΗΣ  ΒΑΣΙΛΕΙΟΣ ΕΜΜΑΝΟΥΗΛ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΑΡΑΤΑΡΗΣ  ΒΑΣΙΛΕΙΟΣ ΕΜΜΑΝΟΥΗΛ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΓΚΟΒΕΣΗ Π. ΧΡΙΣΤΙΝΑ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€200.00</b></div><div class="m">📊 Υπόλοιπο: <b>€200.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006764 (μερικώς)</span><span>Λήξη 26/03/2026</span><span><b>€200.00</b></span><span style="color:var(--red)">22 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΓΚΟΒΕΣΗ Π. ΧΡΙΣΤΙΝΑ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΓΚΟΒΕΣΗ Π. ΧΡΙΣΤΙΝΑ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΟΡΜΠΑΚΗΣ  ΒΑΣΙΛΕΙΟΣ ΑΝΔΡΕΑΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€188.54</b></div><div class="m">📊 Υπόλοιπο: <b>€188.54</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006685 (μερικώς)</span><span>Λήξη 07/03/2026</span><span><b>€188.54</b></span><span style="color:var(--red)">41 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΟΡΜΠΑΚΗΣ  ΒΑΣΙΛΕΙΟΣ ΑΝΔΡΕΑΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΟΡΜΠΑΚΗΣ  ΒΑΣΙΛΕΙΟΣ ΑΝΔΡΕΑΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΜΙΣΤΙΛΟΓΛΟΥ  ΝΙΚΟΛΕΤΤΑ ΜΙΧΑΗΛ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€177.98</b></div><div class="m">📊 Υπόλοιπο: <b>€370.99</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006796 (μερικώς)</span><span>Λήξη 02/04/2026</span><span><b>€177.98</b></span><span style="color:var(--red)">15 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΜΙΣΤΙΛΟΓΛΟΥ  ΝΙΚΟΛΕΤΤΑ ΜΙΧΑΗΛ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΜΙΣΤΙΛΟΓΛΟΥ  ΝΙΚΟΛΕΤΤΑ ΜΙΧΑΗΛ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΑΠΑΤΣΩΡΗΣ  ΔΙΟΝΥΣ ΧΡΙΣΤΟΔΟΥΛΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€147.29</b></div><div class="m">📊 Υπόλοιπο: <b>€989.09</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006815 (μερικώς)</span><span>Λήξη 03/04/2026</span><span><b>€147.29</b></span><span style="color:var(--red)">14 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΑΠΑΤΣΩΡΗΣ  ΔΙΟΝΥΣ ΧΡΙΣΤΟΔΟΥΛΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΑΠΑΤΣΩΡΗΣ  ΔΙΟΝΥΣ ΧΡΙΣΤΟΔΟΥΛΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΗΛΙΟΣ SHOP Ο Ε</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€131.16</b></div><div class="m">📊 Υπόλοιπο: <b>€131.16</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006682 (μερικώς)</span><span>Λήξη 07/03/2026</span><span><b>€131.16</b></span><span style="color:var(--red)">41 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΗΛΙΟΣ SHOP Ο Ε_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΗΛΙΟΣ SHOP Ο Ε')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΣΩΚΙΑΛΙΑΔΗΣ ΙΩΑΝΝΗΣ ΚΑΙ ΣΙΑ Ε Ε</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€122.88</b></div><div class="m">📊 Υπόλοιπο: <b>€1,524.98</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006728 (μερικώς)</span><span>Λήξη 19/03/2026</span><span><b>€122.88</b></span><span style="color:var(--red)">29 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΣΩΚΙΑΛΙΑΔΗΣ ΙΩΑΝΝΗΣ ΚΑΙ ΣΙΑ Ε Ε_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΣΩΚΙΑΛΙΑΔΗΣ ΙΩΑΝΝΗΣ ΚΑΙ ΣΙΑ Ε Ε')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ADELKA Ε Ε</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€66.13</b></div><div class="m">📊 Υπόλοιπο: <b>€2,538.06</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>OPENING_BALANCE</span><span>Λήξη 01/01/2026</span><span><b>€66.13</b></span><span style="color:var(--red)">106 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ADELKA Ε Ε_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ADELKA Ε Ε')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΤΣΑΠΑΛΟΥ Φ.  ΒΑΣΙΛΙΚΗ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€9.55</b></div><div class="m">📊 Υπόλοιπο: <b>€9.55</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006831 (μερικώς)</span><span>Λήξη 08/04/2026</span><span><b>€9.55</b></span><span style="color:var(--red)">9 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΤΣΑΠΑΛΟΥ Φ.  ΒΑΣΙΛΙΚΗ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΤΣΑΠΑΛΟΥ Φ.  ΒΑΣΙΛΙΚΗ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΘΕΟΔΟΣΙΟΥ ΚΩΝΣΤΑΝΤΙΝΟΣ ΙΚΕ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€2.60</b></div><div class="m">📊 Υπόλοιπο: <b>€526.12</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006718 (μερικώς)</span><span>Λήξη 15/03/2026</span><span><b>€2.60</b></span><span style="color:var(--red)">33 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΘΕΟΔΟΣΙΟΥ ΚΩΝΣΤΑΝΤΙΝΟΣ ΙΚΕ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΘΕΟΔΟΣΙΟΥ ΚΩΝΣΤΑΝΤΙΝΟΣ ΙΚΕ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΜΟΣΧΟΣ  ΑΝΤΩΝΙΟΣ ΕΥΑΓΓΕΛΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€1.29</b></div><div class="m">📊 Υπόλοιπο: <b>€1,127.45</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006781 (μερικώς)</span><span>Λήξη 28/03/2026</span><span><b>€1.29</b></span><span style="color:var(--red)">20 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΜΟΣΧΟΣ  ΑΝΤΩΝΙΟΣ ΕΥΑΓΓΕΛΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΜΟΣΧΟΣ  ΑΝΤΩΝΙΟΣ ΕΥΑΓΓΕΛΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΠΑΙΚΟΠΟΥΛΟΥ  ΔΗΜΗΤΡΑ ΝΙΚΟΛΑΟΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€0.40</b></div><div class="m">📊 Υπόλοιπο: <b>€748.66</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006863 (μερικώς)</span><span>Λήξη 11/04/2026</span><span><b>€0.40</b></span><span style="color:var(--red)">6 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΠΑΙΚΟΠΟΥΛΟΥ  ΔΗΜΗΤΡΑ ΝΙΚΟΛΑΟΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΠΑΙΚΟΠΟΥΛΟΥ  ΔΗΜΗΤΡΑ ΝΙΚΟΛΑΟΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΚΑΦΡΟΥΝΙ  ΑΜΕΡ ΤΖΕΟΡΤΖΕΣ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€0.08</b></div><div class="m">📊 Υπόλοιπο: <b>€0.08</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006759 (μερικώς)</span><span>Λήξη 26/03/2026</span><span><b>€0.08</b></span><span style="color:var(--red)">22 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΚΑΦΡΟΥΝΙ  ΑΜΕΡ ΤΖΕΟΡΤΖΕΣ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΚΑΦΡΟΥΝΙ  ΑΜΕΡ ΤΖΕΟΡΤΖΕΣ')">📞 Επικοινωνία</a></div></div>
+<div class="customer-card overdue"><div class="cname">ΜΠΑΛΟΓΙΑΝΝΗ ΦΡΕΙΔΕΡΙΚΗ ΚΑΙ ΣΙΑ ΟΕ</div><div class="cmeta"><div class="m"><span class="pill danger">🔴 ΕΚΠΡΟΘ.</span></div><div class="m">💶 Εκπρόθεσμο: <b>€0.05</b></div><div class="m">📊 Υπόλοιπο: <b>€0.05</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="inv-mini"><div><span>2901 - ΤΙΜΤ - 006847 (μερικώς)</span><span>Λήξη 10/04/2026</span><span><b>€0.05</b></span><span style="color:var(--red)">7 ημέρες</span></div></div><div class="actions"><a class="btn btn-red" href="reminders/ΜΠΑΛΟΓΙΑΝΝΗ ΦΡΕΙΔΕΡΙΚΗ ΚΑΙ ΣΙΑ ΟΕ_OVERDUE.html" target="_blank">📧 Υπενθύμιση</a><a class="btn btn-blue" href="javascript:alert('Επικοινωνία με πελάτη: ΜΠΑΛΟΓΙΑΝΝΗ ΦΡΕΙΔΕΡΙΚΗ ΚΑΙ ΣΙΑ ΟΕ')">📞 Επικοινωνία</a></div></div>
+</div></div>
+<div id="warning" class="tab-content">
+<div class="section">
+<h2>🟡 Προειδοποίηση — Πληρωμές που Λήγουν Σύντομα</h2>
+<p style="color:#666;margin-bottom:16px">Πελάτες με τιμολόγια που λήγουν εντός 5 ημερών — στείλτε <b>επιστολή προ-προειδοποίησης</b> τώρα!</p>
+<div class="customer-card warning"><div class="cname">ΧΑΤΖΗΝΙΚΟΛΑΟΥ  ΓΕΩΡΓΙΟΣ ΚΩΝΣΤΑΝΤΙΝΟΣ</div><div class="cmeta"><div class="m"><span class="pill warn">🟡 ΠΡΟΕΙΔ.</span></div><div class="m">💶 Λήγει σύντομα: <b>€0.00</b></div><div class="m">📊 Υπόλοιπο: <b>€0.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="actions"><a class="btn btn-orange" href="reminders/ΧΑΤΖΗΝΙΚΟΛΑΟΥ  ΓΕΩΡΓΙΟΣ ΚΩΝΣΤΑΝΤΙΝΟΣ_WARNING.html" target="_blank">📧 Προ-Υπενθύμιση</a></div></div>
+<div class="customer-card warning"><div class="cname">ΔΑΤΣΩΛΗΣ  ΛΑΜΠΡΟΣ ΑΝΑΣΤΑΣΙΟΣ</div><div class="cmeta"><div class="m"><span class="pill warn">🟡 ΠΡΟΕΙΔ.</span></div><div class="m">💶 Λήγει σύντομα: <b>€0.00</b></div><div class="m">📊 Υπόλοιπο: <b>€0.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="actions"><a class="btn btn-orange" href="reminders/ΔΑΤΣΩΛΗΣ  ΛΑΜΠΡΟΣ ΑΝΑΣΤΑΣΙΟΣ_WARNING.html" target="_blank">📧 Προ-Υπενθύμιση</a></div></div>
+<div class="customer-card warning"><div class="cname">ΚΑΛΑΝΤΖΗΣ ΚΩΝΣΤΑΝΤΙΝΟΣ </div><div class="cmeta"><div class="m"><span class="pill warn">🟡 ΠΡΟΕΙΔ.</span></div><div class="m">💶 Λήγει σύντομα: <b>€0.00</b></div><div class="m">📊 Υπόλοιπο: <b>€0.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="actions"><a class="btn btn-orange" href="reminders/ΚΑΛΑΝΤΖΗΣ ΚΩΝΣΤΑΝΤΙΝΟΣ_WARNING.html" target="_blank">📧 Προ-Υπενθύμιση</a></div></div>
+<div class="customer-card warning"><div class="cname">ΚΑΝΤΖΟΥΡΙΔΗ  ΧΑΪΔΩ ΙΩΑΝΝΗΣ</div><div class="cmeta"><div class="m"><span class="pill warn">🟡 ΠΡΟΕΙΔ.</span></div><div class="m">💶 Λήγει σύντομα: <b>€0.00</b></div><div class="m">📊 Υπόλοιπο: <b>€0.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="actions"><a class="btn btn-orange" href="reminders/ΚΑΝΤΖΟΥΡΙΔΗ  ΧΑΪΔΩ ΙΩΑΝΝΗΣ_WARNING.html" target="_blank">📧 Προ-Υπενθύμιση</a></div></div>
+<div class="customer-card warning"><div class="cname">ΓΑΛΙΑΤΣΟΥ ΧΡΥΣΑΦ ΑΝΑΣΤΑΣΙΟΣ</div><div class="cmeta"><div class="m"><span class="pill warn">🟡 ΠΡΟΕΙΔ.</span></div><div class="m">💶 Λήγει σύντομα: <b>€0.00</b></div><div class="m">📊 Υπόλοιπο: <b>€0.00</b></div><div class="m">📄 1 τιμολόγια</div></div><div class="actions"><a class="btn btn-orange" href="reminders/ΓΑΛΙΑΤΣΟΥ ΧΡΥΣΑΦ ΑΝΑΣΤΑΣΙΟΣ_WARNING.html" target="_blank">📧 Προ-Υπενθύμιση</a></div></div>
+</div></div>
+</div>
+</div>
+
+<script>
+const CORRECT_PIN = '1357';
+const pins = [document.getElementById('p1'), document.getElementById('p2'), document.getElementById('p3'), document.getElementById('p4')];
+pins.forEach((p, i) => {
+  p.addEventListener('input', e => {
+    if (e.target.value && i < 3) pins[i+1].focus();
+    if (pins.every(x => x.value)) checkPin();
+  });
+  p.addEventListener('keydown', e => {
+    if (e.key === 'Backspace' && !p.value && i > 0) pins[i-1].focus();
+  });
+});
+pins[0].focus();
+
+function checkPin() {
+  const entered = pins.map(p => p.value).join('');
+  if (entered === CORRECT_PIN) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    sessionStorage.setItem('sp_pin_ΜΠΟΥΚΑΣ ΕΥΑΓΓΕΛΟΣ', 'ok');
+  } else {
+    document.getElementById('login-error').textContent = '❌ Λάθος PIN';
+    pins.forEach(p => { p.classList.add('error'); p.value = ''; });
+    setTimeout(() => pins.forEach(p => p.classList.remove('error')), 500);
+    pins[0].focus();
+  }
+}
+if (sessionStorage.getItem('sp_pin_ΜΠΟΥΚΑΣ ΕΥΑΓΓΕΛΟΣ') === 'ok') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+}
+
+function showTab(el, tabId) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+</script>
+</body></html>
