@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Υπενθύμιση Πληρωμής - EASYCARE IKE</title>
+    <!-- Disable service worker registration to prevent webview errors -->
+    <script>
+        // Block service worker registration in webview/unsupported contexts
+        if ('serviceWorker' in navigator) {
+            // Override serviceWorker registration to prevent errors
+            Object.defineProperty(navigator, 'serviceWorker', {
+                get: function() {
+                    return {
+                        register: function() {
+                            return Promise.reject(new Error('Service workers disabled in this context'));
+                        },
+                        ready: Promise.reject(new Error('Service workers disabled')),
+                        controller: null,
+                        getRegistration: function() { return Promise.resolve(undefined); },
+                        getRegistrations: function() { return Promise.resolve([]); }
+                    };
+                }
+            });
+        }
+    </script>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid #1a73e8;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-section h1 {
+            color: #1a73e8;
+            font-size: 24pt;
+            margin-bottom: 5px;
+        }
+
+        .logo-section p {
+            color: #666;
+            font-size: 9pt;
+        }
+
+        .doc-info {
+            text-align: right;
+        }
+
+        .doc-info .doc-type {
+            background: #dc3545;
+            color: white;
+            padding: 8px 20px;
+            font-weight: bold;
+            font-size: 12pt;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .doc-info .date {
+            color: #666;
+            font-size: 10pt;
+        }
+
+        .customer-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .customer-section h3 {
+            color: #1a73e8;
+            margin-bottom: 10px;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .customer-name {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .customer-details {
+            color: #666;
+            font-size: 10pt;
+        }
+
+        .message {
+            margin-bottom: 25px;
+            font-size: 11pt;
+        }
+
+        .amount-box {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .amount-box .label {
+            font-size: 10pt;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .amount-box .amount {
+            font-size: 32pt;
+            font-weight: bold;
+        }
+
+        .bank-section {
+            margin-bottom: 25px;
+        }
+
+        .bank-section h3 {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .bank-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bank-table th {
+            background: #1a73e8;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 10pt;
+        }
+
+        .bank-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .bank-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .bank-table .bank-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .bank-table .iban {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 10pt;
+            letter-spacing: 1px;
+        }
+
+        .bank-table .swift {
+            color: #666;
+            font-size: 9pt;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+
+        .warning-box p {
+            color: #856404;
+            margin: 5px 0;
+            font-size: 10pt;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            text-align: center;
+            color: #666;
+            font-size: 9pt;
+        }
+
+        .footer .company {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .statement-section {
+            margin-bottom: 25px;
+        }
+
+        .statement-section h3 {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .statement-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+
+        .statement-table th {
+            background: #343a40;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 9pt;
+        }
+
+        .statement-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .statement-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .statement-table tfoot {
+            background: #e9ecef;
+            font-weight: bold;
+        }
+
+        .statement-table tfoot td {
+            padding: 12px 8px;
+            border-top: 2px solid #343a40;
+        }
+
+        .days-cell {
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 9pt;
+        }
+
+        .days-cell.critical {
+            background: #dc3545;
+            color: white;
+        }
+
+        .days-cell.warning {
+            background: #fd7e14;
+            color: white;
+        }
+
+        .days-cell.mild {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .overdue-critical td:first-child {
+            border-left: 4px solid #dc3545;
+        }
+
+        .overdue-warning td:first-child {
+            border-left: 4px solid #fd7e14;
+        }
+
+        .overdue-mild td:first-child {
+            border-left: 4px solid #ffc107;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .document {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo-section">
+                <h1>EASYCARE IKE</h1>
+                <p>Προϊόντα Υγιεινής & Φροντίδας</p>
+                <p>ΑΦΜ: 999456810 | ΔΟΥ: ΚΕΦΟΔΕ ΑΤΤΙΚΗΣ</p>
+            </div>
+            <div class="doc-info">
+                <div class="doc-type">⚠️ ΥΠΕΝΘΥΜΙΣΗ ΠΛΗΡΩΜΗΣ</div>
+                <div class="date">Ημερομηνία: 17/04/2026</div>
+                <div class="date">Αρ. Αναφοράς: REM-20260417-003</div>
+            </div>
+        </div>
+
+        <div class="customer-section">
+            <h3>Στοιχεία Πελάτη</h3>
+            <div class="customer-name">ΚΑΛΟΥΜΕΝΟΣ  ΜΑΡΚΟΣ ΠΕΤΡΟΣ</div>
+            <div class="customer-details">
+                ΑΦΜ: 026965402<br>
+                Email: markscenter@gmail.com
+            </div>
+        </div>
+
+        <div class="message">
+            <p>Αγαπητέ συνεργάτη,</p>
+            <br>
+            <p>Σας υπενθυμίζουμε ότι υφίσταται <strong>ληξιπρόθεσμο υπόλοιπο</strong> στον λογαριασμό σας, το οποίο παρακαλούμε να τακτοποιήσετε το συντομότερο δυνατό.</p>
+        </div>
+
+        <div class="amount-box">
+            <div class="label">ΣΥΝΟΛΙΚΟ ΛΗΞΙΠΡΟΘΕΣΜΟ ΥΠΟΛΟΙΠΟ</div>
+            <div class="amount">€229,54</div>
+        </div>
+
+        <div class="statement-section">
+            <h3>📋 Αναλυτική Κατάσταση Λογαριασμού</h3>
+            <table class="statement-table">
+                <thead>
+                    <tr>
+                        <th>Παραστατικό</th>
+                        <th>Ημ/νία Έκδοσης</th>
+                        <th>Ημ/νία Λήξης</th>
+                        <th>Ποσό</th>
+                        <th>Υπόλοιπο</th>
+                        <th>Καθυστέρηση</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="overdue-warning">
+            <td>2901 - ΤΙΜΤ - 006799 (μερικώς)</td>
+            <td>03/03/2026</td>
+            <td>02/04/2026</td>
+            <td>€529,54</td>
+            <td>€229,54</td>
+            <td><span class="days-cell warning">15 ημέρες</span></td>
+        </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong>ΣΥΝΟΛΟ</strong></td>
+                        <td><strong>€488,13</strong></td>
+                        <td><strong>€488,13</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="bank-section">
+            <h3>🏦 Τραπεζικοί Λογαριασμοί</h3>
+            <p style="margin-bottom: 15px; color: #666; font-size: 10pt;">
+                <strong>Δικαιούχος:</strong> EASYCARE IKE | <strong>ΑΦΜ:</strong> 999456810
+            </p>
+            <table class="bank-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Τράπεζα</th>
+                        <th style="width: 50%;">IBAN</th>
+                        <th style="width: 25%;">SWIFT/BIC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="bank-name">EUROBANK</td>
+                        <td class="iban">GR72 0260 0930 0008 4020 0773 424</td>
+                        <td class="swift">ABORGRAA</td>
+                    </tr>
+                    <tr>
+                        <td class="bank-name">ALPHA BANK</td>
+                        <td class="iban">GR45 0140 1840 1840 0200 2003 573</td>
+                        <td class="swift">CRBAGRAA</td>
+                    </tr>
+                    <tr>
+                        <td class="bank-name">ΤΡΑΠΕΖΑ ΠΕΙΡΑΙΩΣ</td>
+                        <td class="iban">GR78 0172 0540 0050 5405 4608 846</td>
+                        <td class="swift">PIABORAA</td>
+                    </tr>
+                    <tr>
+                        <td class="bank-name">REVOLUT</td>
+                        <td class="iban">LT59 3250 0048 2197 2603</td>
+                        <td class="swift">REVOLT21</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ ΣΗΜΑΝΤΙΚΕΣ ΟΔΗΓΙΕΣ:</strong>
+            <p>• Όλα τα έξοδα τραπεζικών εμβασμάτων <strong>βαρύνουν τον αποστολέα</strong> (OUR charges)</p>
+            <p>• Στην αιτιολογία αναγράψτε την <strong>επωνυμία σας</strong> ή τον <strong>αριθμό τιμολογίου</strong></p>
+            <p>• Μετά την κατάθεση, στείλτε αποδεικτικό στο: <strong>finance@easycare.gr</strong></p>
+        </div>
+
+        <div class="message">
+            <p>Παραμένουμε στη διάθεσή σας για οποιαδήποτε διευκρίνιση.</p>
+            <br>
+            <p>Με εκτίμηση,<br><strong>Τμήμα Οικονομικών</strong><br>EASYCARE IKE</p>
+        </div>
+
+        <div class="footer">
+            <div class="company">EASYCARE HYGIENE PRODUCTS P.C.</div>
+            <div>Δημοκρατίας 15Α, Μελίσσια 15127, Αθήνα</div>
+            <div class="contact-row">
+                <span class="contact-item">📞 +30 210 613 8001</span>
+                <span class="contact-item">📧 finance@easycare.gr</span>
+                <span class="contact-item">🌐 www.easycare.gr</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
